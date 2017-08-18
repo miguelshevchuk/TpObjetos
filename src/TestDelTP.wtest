@@ -1,9 +1,46 @@
+import TpObjetos.*
 
-describe "group of tests" {
+describe "Pruebas para los músicos" {
 
-	test "testX" {
-
-		assert.that(true)
-
+	test "si joaquin esta en grupo, su habilidad es 100" {
+		joaquin.estaEnGrupo()
+		assert.equals(joaquin.decimeHabilidad(), 100)
 	}
+	
+	test "si joaquin esta como solista, su habilidad es 50"{
+		joaquin.estaSolista()
+		assert.equals(joaquin.decimeHabilidad(),50)
+	}
+	
+	test "si lucia esta en grupo, su habilidad es 50 "{
+		lucia.estaEnGrupo()
+		assert.equals(lucia.decimeHabilidad(), 50)
+	}
+	
+	test "si lucia esta como solista, su habilidad es 70 "{
+		lucia.estaEnGrupo()
+		assert.equals(lucia.decimeHabilidad(), 70)
+	}
+	
+	test "si Luis Alberto toca con la Fender, su habilidad es 80"{
+		luisAlberto.tocaConFender()
+		assert.equals(luisAlberto.decimeHabilidad(), 80)
+	}
+	
+	test "si Luis Alberto toca con la Gibson estando sana, su habilidad es 100"{
+		luisAlberto.tocaConGibsonsana()
+		assert.equals(luisAlberto.decimeHabilidad(), 80)
+	}
+	
+	test "si Luis Alberto toca con la Gibson estando rota, su habilidad es 45"{
+		luisAlberto.tocaConGibsonrota()
+		assert.equals(luisAlberto.decimeHabilidad(), 80)
+	}
+	
+	test "si Joaquin interpreta bien la cancion La Familia"{
+		assert.that(joaquin.interpretaBien)	
+	}
+	
+	
+	
 }
