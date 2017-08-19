@@ -73,6 +73,13 @@ describe "Pruebas para los músicos" {
 	}
 	
 	//Faltan 2 test, que usan el metodo de si es Sábado
+	test "si la capacidad de La Trastienda para el 5/8/17, es 700"{
+		laTrastienda.fechaPresentacion()
+	}
+	
+	test "si la capacidad de La Trastienda para el 8/8/17, es 400"{
+		
+	}
 	
 	
 	test "si Lucia cobra 500, en la presentación del Luna Park"{

@@ -44,7 +44,7 @@ class Cancion{
 }
 
 class Presentacion{
-	var participantes=0
+	var participantes=[]
 	var capacidad=0
 	var fechaPresentacion
 	
@@ -63,6 +63,9 @@ class Presentacion{
 	method capacidad(nuevaCapacidad){capacidad=nuevaCapacidad}
 
 	method fechaPresentacion()=fechaPresentacion
+	method fechaPresentacion(nuevaFecha){
+		fechaPresentacion=nuevaFecha
+	}
 	
 	method decimeCosto(){
 		return self.participantes().sum({miembro=>miembro.cantidadQueCobra()})
@@ -71,6 +74,7 @@ class Presentacion{
 
 object joaquin inherits Integrante(20, 25){ 
 	
+
 		method estaEnGrupo(){ 
 			habilidadActual = habilidadGrupo
 			self.cantidadQueCobra(50)
@@ -152,6 +156,6 @@ object lunaPark inherits Presentacion([luisAlberto, joaquin, lucia], 9290, new D
 
 
 object laTrastienda inherits Presentacion([luisAlberto, joaquin, lucia],400, new Date(15,11,2017)){
-	
+
 }
 
