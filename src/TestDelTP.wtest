@@ -2,14 +2,14 @@ import TpObjetos.*
 
 describe "Pruebas para los músicos" {
 
-	test "si joaquin esta en grupo, su habilidad es 100" {
+	test "si joaquin esta en grupo, su habilidad es 25" {
 		joaquin.estaEnGrupo()
-		assert.equals(joaquin.decimeHabilidad(), 100)
+		assert.equals(joaquin.decimeHabilidad(), 25)
 	}
 	
-	test "si joaquin esta como solista, su habilidad es 50"{
+	test "si joaquin esta como solista, su habilidad es 20"{
 		joaquin.estaSolista()
-		assert.equals(joaquin.decimeHabilidad(),50)
+		assert.equals(joaquin.decimeHabilidad(),20)
 	}
 	
 	test "si lucia esta en grupo, su habilidad es 50 "{
@@ -18,7 +18,7 @@ describe "Pruebas para los músicos" {
 	}
 	
 	test "si lucia esta como solista, su habilidad es 70 "{
-		lucia.estaEnGrupo()
+		lucia.estaSolista()
 		assert.equals(lucia.decimeHabilidad(), 70)
 	}
 	
@@ -29,32 +29,83 @@ describe "Pruebas para los músicos" {
 	
 	test "si Luis Alberto toca con la Gibson estando sana, su habilidad es 100"{
 		luisAlberto.tocaConGibsonsana()
-		assert.equals(luisAlberto.decimeHabilidad(), 80)
+		assert.equals(luisAlberto.decimeHabilidad(), 100)
 	}
 	
-	test "si Luis Alberto toca con la Gibson estando rota, su habilidad es 45"{
+	test "si Luis Alberto toca con la Gibson estando rota, su habilidad es 40"{
 		luisAlberto.tocaConGibsonrota()
-		assert.equals(luisAlberto.decimeHabilidad(), 80)
+		assert.equals(luisAlberto.decimeHabilidad(), 40)
 	}
 	
 	test "si Joaquin interpreta bien la cancion La Familia"{
-		assert.that(joaquin.interpretaBien(laFamilia))	
+		assert.equals(joaquin.interpretaBien(laFamilia), false)	
+	}
+	
+	test "si Joaquin interpreta bien la cancion Cisne"{
+		assert.that(joaquin.interpretaBien(cisne))
+	}
+	
+	test "si Lucia interpreta bien la cancion La Familia"{
+		assert.that(lucia.interpretaBien(laFamilia))
+	}
+	
+	test "si Lucia interpreta bien la cancion Cisne"{
+		assert.equals(lucia.interpretaBien(cisne), false)
+	}
+	
+	test "si Luis Alberto interpreta bien la cancion La Familia"{
+		assert.that(luisAlberto.interpretaBien(laFamilia))
+	}
+	
+	test "si Luis Alberto interpreta bien la cancion Cisne"{
+		assert.that(luisAlberto.interpretaBien(cisne))
+	}
+	
+	test "si Joaquin cobra 50, en la presentacion del Luna Park"{
+		joaquin.estaEnGrupo()
+		assert.equals(joaquin.cantidadQueCobra(), 50)
 	}
 	
 	
+		test "joaquin"{
+		joaquin.estaEnGrupo()
+		
+		
+		assert.equals(joaquin.cantidadQueCobra(), 50)
+		
+		
+	}
+		test "lucia"{
+		
+		lucia.capacidadLugarDePresentacion(lunaPark)
+		
+		
+		assert.equals(lucia.cantidadQueCobra(),500)
+		
+		
+	}
 	
-	
-	
-	
-	test "lo que cobra cada uno por una presentacion"{
+	test "luis Alberto"{
+		
+		luisAlberto.lugarDeLaPresentacion(lunaPark)
+		
+		
+		assert.equals(luisAlberto.cantidadQueCobra(),1000)
+		
+	}
+	test "costo de la presentacion del Luna Park"{
 		joaquin.estaEnGrupo()
 		lucia.capacidadLugarDePresentacion(lunaPark)
 		luisAlberto.lugarDeLaPresentacion(lunaPark)
 		
-		assert.that(joaquin.cantidadQueCobra())
-		assert.that(lucia.cantidadQueCobra())
-		assert.that(luisAlberto.cantidadQueCobra())
-		
+		assert.equals(lunaPark.decimeCosto(), 1550)
 	}
 	
+	test "costo de la presentacion de La Trastienda"{ //arreglar, falta metodo de si es sabado
+		joaquin.estaEnGrupo()
+		lucia.capacidadLugarDePresentacion(laTrastienda)
+		luisAlberto.lugarDeLaPresentacion(laTrastienda)
+		
+		assert.equals(laTrastienda.decimeCosto(), 1650)
+	}
 }

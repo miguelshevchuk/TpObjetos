@@ -65,7 +65,7 @@ class Presentacion{
 	method fechaPresentacion()=fechaPresentacion
 	
 	method decimeCosto(){
-		self.participantes().sum({miembro=>miembro.cantidadQueCobra()})
+		return self.participantes().sum({miembro=>miembro.cantidadQueCobra()})
 	}
 }
 
@@ -88,7 +88,7 @@ object lucia inherits Integrante(70, 50){
 		method estaEnGrupo(){ habilidadActual = habilidadGrupo }
  		method estaSolista(){ habilidadActual = habilidadSolista }
 	
-		override method interpretaBien(unaCancion)=unaCancion.letra().contains("viento")
+		override method interpretaBien(unaCancion)=unaCancion.letra().contains("familia")
 		
 		method capacidadLugarDePresentacion(unaPresentacion){
 			if(unaPresentacion.capacidad()>5000){
@@ -129,7 +129,7 @@ object luisAlberto inherits Integrante{
 		}
 	}
 	 method lugarDeLaPresentacion(unaPresentacion){
-	 	if(unaPresentacion.fechaPresentacion()<new Date(31,09,2017)){
+	 	if(unaPresentacion.fechaPresentacion()<new Date(30,09,2017)){
 	 		self.cantidadQueCobra(1000)
 	 	}
 	 	else{self.cantidadQueCobra(1200)
