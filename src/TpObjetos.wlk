@@ -155,7 +155,3 @@ object laTrastienda inherits Presentacion([luisAlberto, joaquin, lucia],400, new
 	
 }
 
-
-
-
-

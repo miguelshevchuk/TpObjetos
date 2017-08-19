@@ -37,62 +37,65 @@ describe "Pruebas para los músicos" {
 		assert.equals(luisAlberto.decimeHabilidad(), 40)
 	}
 	
-	test "si Joaquin interpreta bien la cancion La Familia"{
+	test "si Joaquin interpreta bien la canción La Familia"{
 		assert.equals(joaquin.interpretaBien(laFamilia), false)	
 	}
 	
-	test "si Joaquin interpreta bien la cancion Cisne"{
+	test "si Joaquin interpreta bien la canción Cisne"{
 		assert.that(joaquin.interpretaBien(cisne))
 	}
 	
-	test "si Lucia interpreta bien la cancion La Familia"{
+	test "si Lucia interpreta bien la canción La Familia"{
 		assert.that(lucia.interpretaBien(laFamilia))
 	}
 	
-	test "si Lucia interpreta bien la cancion Cisne"{
-		assert.equals(lucia.interpretaBien(cisne), false)
+	test "si Lucia interpreta bien la canción Cisne"{
+		 assert.equals(lucia.interpretaBien(cisne), false)
+ 
 	}
 	
-	test "si Luis Alberto interpreta bien la cancion La Familia"{
+	test "si Luis Alberto interpreta bien la canción La Familia"{
 		assert.that(luisAlberto.interpretaBien(laFamilia))
 	}
 	
-	test "si Luis Alberto interpreta bien la cancion Cisne"{
+	test "si Luis Alberto interpreta bien la canción Cisne"{
 		assert.that(luisAlberto.interpretaBien(cisne))
 	}
 	
-	test "si Joaquin cobra 50, en la presentacion del Luna Park"{
+	test "si Joaquin cobra 50, en la presentación del Luna Park"{
 		joaquin.estaEnGrupo()
 		assert.equals(joaquin.cantidadQueCobra(), 50)
 	}
 	
-	
-		test "joaquin"{
-		joaquin.estaEnGrupo()
-		
-		
-		assert.equals(joaquin.cantidadQueCobra(), 50)
-		
-		
+	test "si Joaquin cobra 100, en la presentación del Luna Park"{
+		joaquin.estaSolista()
+		assert.equals(joaquin.cantidadQueCobra(), 100)
 	}
-		test "lucia"{
-		
+	
+	//Faltan 2 test, que usan el metodo de si es Sábado
+	
+	
+	test "si Lucia cobra 500, en la presentación del Luna Park"{
 		lucia.capacidadLugarDePresentacion(lunaPark)
-		
-		
-		assert.equals(lucia.cantidadQueCobra(),500)
-		
-		
+		assert.equals(lucia.cantidadQueCobra(), 500)
 	}
 	
-	test "luis Alberto"{
-		
-		luisAlberto.lugarDeLaPresentacion(lunaPark)
-		
-		
-		assert.equals(luisAlberto.cantidadQueCobra(),1000)
-		
+	test "si Lucia cobra 400, en la presentación de La Trastienda"{
+		lucia.capacidadLugarDePresentacion(laTrastienda)
+		assert.equals(lucia.cantidadQueCobra(), 400)
 	}
+	
+	test "si Luis Alberto cobra 1000, en la presentación del Luna Park"{
+		luisAlberto.lugarDeLaPresentacion(lunaPark)
+		assert.equals(luisAlberto.cantidadQueCobra(), 1000)
+	}
+	
+	test "si Luis Alberto cobra 1200, en la presentación de La Trastienda"{
+		luisAlberto.lugarDeLaPresentacion(laTrastienda)
+		assert.equals(luisAlberto.cantidadQueCobra(), 1200)
+	}
+	
+
 	test "costo de la presentacion del Luna Park"{
 		joaquin.estaEnGrupo()
 		lucia.capacidadLugarDePresentacion(lunaPark)
@@ -101,7 +104,7 @@ describe "Pruebas para los músicos" {
 		assert.equals(lunaPark.decimeCosto(), 1550)
 	}
 	
-	test "costo de la presentacion de La Trastienda"{ //arreglar, falta metodo de si es sabado
+	test "costo de la presentacion de La Trastienda"{ 
 		joaquin.estaEnGrupo()
 		lucia.capacidadLugarDePresentacion(laTrastienda)
 		luisAlberto.lugarDeLaPresentacion(laTrastienda)
