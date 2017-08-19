@@ -8,7 +8,7 @@ class Integrante{
 	constructor(unaHabilidadSolista, unaHabilidadGrupo){
 		habilidadGrupo = unaHabilidadGrupo
 		habilidadSolista=unaHabilidadSolista
-		habilidadActual=unaHabilidadGrupo
+		habilidadActual=unaHabilidadSolista
 	
 	}
 	
@@ -26,9 +26,7 @@ class Integrante{
 		
 		method decimeHabilidad()=habilidadActual
 	
-		method interpretaBien(unaCancion){
-		return true
-	}
+		method interpretaBien(unaCancion)=true
 		
 }
 
@@ -48,8 +46,15 @@ class Cancion{
 class Presentacion{
 	var participantes=0
 	var capacidad=0
+	var fechaPresentacion
 	
-	constructor(unosParticipantes, unaCapacidad)
+	
+	constructor(unosParticipantes, unaCapacidad, diaPresentacion){
+		participantes= unosParticipantes
+		capacidad=unaCapacidad
+		fechaPresentacion=diaPresentacion
+	
+	}
 	
 	method participantes()=participantes
 	method participantes(nuevosParticipantes){participantes=nuevosParticipantes}
@@ -57,6 +62,11 @@ class Presentacion{
 	method capacidad()=capacidad
 	method capacidad(nuevaCapacidad){capacidad=nuevaCapacidad}
 
+	method fechaPresentacion()=fechaPresentacion
+	
+	method decimeCosto(){
+		self.participantes().sum({miembro=>miembro.cantidadQueCobra()})
+	}
 }
 
 object joaquin inherits Integrante(20, 25){ 
@@ -79,6 +89,13 @@ object lucia inherits Integrante(70, 50){
  		method estaSolista(){ habilidadActual = habilidadSolista }
 	
 		override method interpretaBien(unaCancion)=unaCancion.letra().contains("viento")
+		
+		method capacidadLugarDePresentacion(unaPresentacion){
+			if(unaPresentacion.capacidad()>5000){
+				self.cantidadQueCobra(500)
+			}
+			else{self.cantidadQueCobra(400)}
+		}
 		
 }
 
@@ -111,6 +128,14 @@ object luisAlberto inherits Integrante{
 			return habilidadActual
 		}
 	}
+	 method lugarDeLaPresentacion(unaPresentacion){
+	 	if(unaPresentacion.fechaPresentacion()<new Date(31,09,2017)){
+	 		self.cantidadQueCobra(1000)
+	 	}
+	 	else{self.cantidadQueCobra(1200)
+	 		
+	 	}
+	 }
 	
 }
 
@@ -121,9 +146,15 @@ object laFamilia inherits Cancion(264,"Quiero brindar por mi gente sencilla, por
 
 
 
-object lunaPark inherits Presentacion([luisAlberto, joaquin, lucia], 9290){}
+object lunaPark inherits Presentacion([luisAlberto, joaquin, lucia], 9290, new Date(20,4,2017)){
+	
+}
 
-object laTrastienda inherits Presentacion([luisAlberto, joaquin, lucia],400){}
+
+object laTrastienda inherits Presentacion([luisAlberto, joaquin, lucia],400, new Date(15,11,2017)){
+	
+}
+
 
 
 

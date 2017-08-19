@@ -38,9 +38,23 @@ describe "Pruebas para los músicos" {
 	}
 	
 	test "si Joaquin interpreta bien la cancion La Familia"{
-		assert.that(joaquin.interpretaBien)	
+		assert.that(joaquin.interpretaBien(laFamilia))	
 	}
 	
 	
+	
+	
+	
+	
+	test "lo que cobra cada uno por una presentacion"{
+		joaquin.estaEnGrupo()
+		lucia.capacidadLugarDePresentacion(lunaPark)
+		luisAlberto.lugarDeLaPresentacion(lunaPark)
+		
+		assert.that(joaquin.cantidadQueCobra())
+		assert.that(lucia.cantidadQueCobra())
+		assert.that(luisAlberto.cantidadQueCobra())
+		
+	}
 	
 }
