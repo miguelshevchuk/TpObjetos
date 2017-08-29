@@ -157,5 +157,17 @@ object lunaPark inherits Presentacion([luisAlberto, joaquin, lucia], 9290, new D
 
 object laTrastienda inherits Presentacion([luisAlberto, joaquin, lucia],400, new Date(15,11,2017)){
 
+	override method capacidad(){
+		if(self.esSabado()){
+			return 700
+		}
+		else{
+			return 400
+		}
+	}
+	
+	method esSabado(){
+		return self.fechaPresentacion().dayOfWeek() == 6
+	}
 }
 

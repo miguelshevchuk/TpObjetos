@@ -72,13 +72,15 @@ describe "Pruebas para los músicos" {
 		assert.equals(joaquin.cantidadQueCobra(), 100)
 	}
 	
-	//Faltan 2 test, que usan el metodo de si es Sábado
 	test "si la capacidad de La Trastienda para el 5/8/17, es 700"{
-		laTrastienda.fechaPresentacion()
+		laTrastienda.fechaPresentacion(new Date(05,08,17))
+		assert.equals(laTrastienda.capacidad(), 700)
+		
 	}
 	
 	test "si la capacidad de La Trastienda para el 8/8/17, es 400"{
-		
+		laTrastienda.fechaPresentacion(new Date(08,08,17))
+		assert.equals(laTrastienda.capacidad(), 400)
 	}
 	
 	
