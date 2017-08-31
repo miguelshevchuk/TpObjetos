@@ -2,6 +2,8 @@ import Objetos.*
 import Presentacion.*
 import Integrante.*
 import Cancion.*
+import MusicoDeGrupo.*
+import VocalistaPopular.*
 
 describe "Pruebas para los músicos" {
 

@@ -1,67 +1,16 @@
 import Presentacion.*
 import Integrante.*
 import Cancion.*
+import MusicoDeGrupo.*
+import VocalistaPopular.*
 
 
-class MusicoDeGrupo inherits Integrante{ 
-	
-	constructor(unaHabilidadSolista, variacionPorGrupo){ // constructor de la clase de joaquin
-		habilidadGrupo = unaHabilidadSolista + variacionPorGrupo
-		habilidadSolista=unaHabilidadSolista
-		habilidadActual=unaHabilidadSolista
-		estado="Solista"
-	}
-
-		method estaEnGrupo(){ 
-			self.estado("Está en un grupo")
-			self.habilidadActual(self.habilidadGrupo())
-			self.cantidadQueCobra(50)
-		}
- 		method estaSolista(){ 
- 			self.estado("Es solista")
- 			self.habilidadActual(self.habilidadSolista())
- 			self.cantidadQueCobra(100)
- 		}
-	
-		override method interpretaBien(unaCancion)=unaCancion.duracion()>300
-}
 
 object joaquin inherits MusicoDeGrupo(20, 5){
 	
-}
-
-
-class VocalistaPopular inherits Integrante{
-		var palabraDeCancion=0
-		
-		constructor(unaHabilidadSolista, variacionGrupo, palabraCancion){
-			habilidadGrupo = unaHabilidadSolista - variacionGrupo
-			habilidadSolista= unaHabilidadSolista
-			habilidadActual= unaHabilidadSolista
-			palabraDeCancion=palabraCancion
-			estado="Solista"
-		}
-		
-		method palabraDeCancion()=palabraDeCancion
-		method palabraDeCancion(nuevaPalabraDeCancion){
-			palabraDeCancion=nuevaPalabraDeCancion
-		}
-		
-		method estaEnGrupo(){ 
-			self.estado("Está en un grupo")
-			self.habilidadActual(self.habilidadGrupo())
-		}
- 		method estaSolista(){
- 			self.estado("Es solista")
- 			self.habilidadActual(self.habilidadSolista())
- 		}
-	
-		override method interpretaBien(unaCancion)=unaCancion.letra().contains(self.palabraDeCancion())
-		
+	override method interpretaBien(unaCancion)=unaCancion.duracion()>300
 	
 }
-
-
 
 object lucia inherits VocalistaPopular(70, 20, "familia"){
 	
@@ -79,6 +28,15 @@ object luisAlberto inherits Integrante{
 	const fender = 10
 	const gibsonsana = 15
 	const gibsonrota = 5
+	
+	
+	method estaEnGrupo(){ 
+			self.estado("Está en un grupo")
+	}
+	
+	method estaSolista(){ 
+ 			self.estado("Es solista")		
+ 	}
 	
 	method tocaConFender(){guitarraActual=fender}
 	
@@ -115,16 +73,17 @@ object luisAlberto inherits Integrante{
 }
 
 
+
 object cisne inherits Cancion(312,"hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar"){}
 
 object laFamilia inherits Cancion(264,"Quiero brindar por mi gente sencilla, por el amor brindo por la familia"){}
 
 
 
+
 object lunaPark inherits Presentacion([luisAlberto, joaquin, lucia], 9290, new Date(20,4,2017)){
 	
 }
-
 
 object laTrastienda inherits Presentacion([luisAlberto, joaquin, lucia],400, new Date(15,11,2017)){
 
