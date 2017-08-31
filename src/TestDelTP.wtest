@@ -1,4 +1,7 @@
-import TpObjetos.*
+import Objetos.*
+import Presentacion.*
+import Integrante.*
+import Cancion.*
 
 describe "Pruebas para los músicos" {
 

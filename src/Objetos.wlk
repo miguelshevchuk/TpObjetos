@@ -1,76 +1,7 @@
-class Integrante{
-	var habilidadSolista
-	var habilidadGrupo
-	var habilidadActual
-	var cantidadQueCobra=0
-	
-	
-	constructor(unaHabilidadSolista, unaHabilidadGrupo){
-		habilidadGrupo = unaHabilidadGrupo
-		habilidadSolista=unaHabilidadSolista
-		habilidadActual=unaHabilidadSolista
-	
-	}
-	
-	constructor(){habilidadActual=0}
-	
-		method cantidadQueCobra()=cantidadQueCobra
-		method cantidadQueCobra(nuevaCantidad){
-			cantidadQueCobra=nuevaCantidad
-		}
-		
-		method habilidadActual()=habilidadActual
-		method habilidadActual(nuevaHabilidadActual){
-			habilidadActual=nuevaHabilidadActual
-		}
-		
-		method decimeHabilidad()=habilidadActual
-	
-		method interpretaBien(unaCancion)=true
-		
-}
+import Presentacion.*
+import Integrante.*
+import Cancion.*
 
-class Cancion{
-		var duracion=0
-		var letra
-	
-		constructor(unaDuracion, unaLetra){
-		duracion=unaDuracion
-		letra=unaLetra
-		}
-	
-		method duracion()=duracion
-		method letra()=letra
-}
-
-class Presentacion{
-	var participantes=[]
-	var capacidad=0
-	var fechaPresentacion
-	
-	
-	constructor(unosParticipantes, unaCapacidad, diaPresentacion){
-		participantes= unosParticipantes
-		capacidad=unaCapacidad
-		fechaPresentacion=diaPresentacion
-	
-	}
-	
-	method participantes()=participantes
-	method participantes(nuevosParticipantes){participantes=nuevosParticipantes}
-	
-	method capacidad()=capacidad
-	method capacidad(nuevaCapacidad){capacidad=nuevaCapacidad}
-
-	method fechaPresentacion()=fechaPresentacion
-	method fechaPresentacion(nuevaFecha){
-		fechaPresentacion=nuevaFecha
-	}
-	
-	method decimeCosto(){
-		return self.participantes().sum({miembro=>miembro.cantidadQueCobra()})
-	}
-}
 
 object joaquin inherits Integrante(20, 25){ 
 	
