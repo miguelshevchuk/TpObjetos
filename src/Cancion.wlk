@@ -1,6 +1,7 @@
 
 
 class Cancion{
+		var titulo
 		var duracion=0
 		var letra
 	

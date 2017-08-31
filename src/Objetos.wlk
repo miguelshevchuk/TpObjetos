@@ -3,29 +3,69 @@ import Integrante.*
 import Cancion.*
 
 
-object joaquin inherits Integrante(20, 25){ 
+class MusicoDeGrupo inherits Integrante{ 
 	
+	constructor(unaHabilidadSolista, variacionPorGrupo){ // constructor de la clase de joaquin
+		habilidadGrupo = unaHabilidadSolista + variacionPorGrupo
+		habilidadSolista=unaHabilidadSolista
+		habilidadActual=unaHabilidadSolista
+		estado="Solista"
+	}
 
 		method estaEnGrupo(){ 
-			habilidadActual = habilidadGrupo
+			self.estado("Está en un grupo")
+			self.habilidadActual(self.habilidadGrupo())
 			self.cantidadQueCobra(50)
 		}
  		method estaSolista(){ 
- 			habilidadActual = habilidadSolista
+ 			self.estado("Es solista")
+ 			self.habilidadActual(self.habilidadSolista())
  			self.cantidadQueCobra(100)
  		}
 	
 		override method interpretaBien(unaCancion)=unaCancion.duracion()>300
 }
 
-object lucia inherits Integrante(70, 50){
+object joaquin inherits MusicoDeGrupo(20, 5){
 	
-		method estaEnGrupo(){ habilidadActual = habilidadGrupo }
- 		method estaSolista(){ habilidadActual = habilidadSolista }
-	
-		override method interpretaBien(unaCancion)=unaCancion.letra().contains("familia")
+}
+
+
+class VocalistaPopular inherits Integrante{
+		var palabraDeCancion=0
 		
-		method capacidadLugarDePresentacion(unaPresentacion){
+		constructor(unaHabilidadSolista, variacionGrupo, palabraCancion){
+			habilidadGrupo = unaHabilidadSolista - variacionGrupo
+			habilidadSolista= unaHabilidadSolista
+			habilidadActual= unaHabilidadSolista
+			palabraDeCancion=palabraCancion
+			estado="Solista"
+		}
+		
+		method palabraDeCancion()=palabraDeCancion
+		method palabraDeCancion(nuevaPalabraDeCancion){
+			palabraDeCancion=nuevaPalabraDeCancion
+		}
+		
+		method estaEnGrupo(){ 
+			self.estado("Está en un grupo")
+			self.habilidadActual(self.habilidadGrupo())
+		}
+ 		method estaSolista(){
+ 			self.estado("Es solista")
+ 			self.habilidadActual(self.habilidadSolista())
+ 		}
+	
+		override method interpretaBien(unaCancion)=unaCancion.letra().contains(self.palabraDeCancion())
+		
+	
+}
+
+
+
+object lucia inherits VocalistaPopular(70, 20, "familia"){
+	
+		method cobraPorLugarDePresentacion(unaPresentacion){
 			if(unaPresentacion.capacidad()>5000){
 				self.cantidadQueCobra(500)
 			}
@@ -63,7 +103,7 @@ object luisAlberto inherits Integrante{
 			return habilidadActual
 		}
 	}
-	 method lugarDeLaPresentacion(unaPresentacion){
+	 method cobraPorLugarDePresentacion(unaPresentacion){
 	 	if(unaPresentacion.fechaPresentacion()<new Date(30,09,2017)){
 	 		self.cantidadQueCobra(1000)
 	 	}
