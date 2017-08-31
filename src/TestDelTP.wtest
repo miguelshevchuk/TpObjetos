@@ -88,38 +88,38 @@ describe "Pruebas para los músicos" {
 	
 	
 	test "si Lucia cobra 500, en la presentación del Luna Park"{
-		lucia.capacidadLugarDePresentacion(lunaPark)
+		lucia.cobraPorLugarDePresentacion(lunaPark)
 		assert.equals(lucia.cantidadQueCobra(), 500)
 	}
 	
 	test "si Lucia cobra 400, en la presentación de La Trastienda"{
-		lucia.capacidadLugarDePresentacion(laTrastienda)
+		lucia.cobraPorLugarDePresentacion(laTrastienda)
 		assert.equals(lucia.cantidadQueCobra(), 400)
 	}
 	
 	test "si Luis Alberto cobra 1000, en la presentación del Luna Park"{
-		luisAlberto.lugarDeLaPresentacion(lunaPark)
+		luisAlberto.cobraPorLugarDePresentacion(lunaPark)
 		assert.equals(luisAlberto.cantidadQueCobra(), 1000)
 	}
 	
 	test "si Luis Alberto cobra 1200, en la presentación de La Trastienda"{
-		luisAlberto.lugarDeLaPresentacion(laTrastienda)
+		luisAlberto.cobraPorLugarDePresentacion(laTrastienda)
 		assert.equals(luisAlberto.cantidadQueCobra(), 1200)
 	}
 	
 
-	test "costo de la presentacion del Luna Park"{
+	test "el costo de la presentacion del Luna Park es 1550 "{
 		joaquin.estaEnGrupo()
-		lucia.capacidadLugarDePresentacion(lunaPark)
-		luisAlberto.lugarDeLaPresentacion(lunaPark)
+		lucia.cobraPorLugarDePresentacion(lunaPark)
+		luisAlberto.cobraPorLugarDePresentacion(lunaPark)
 		
 		assert.equals(lunaPark.decimeCosto(), 1550)
 	}
 	
-	test "costo de la presentacion de La Trastienda"{ 
+	test "el costo de la presentacion de La Trastienda es 1650"{ 
 		joaquin.estaEnGrupo()
-		lucia.capacidadLugarDePresentacion(laTrastienda)
-		luisAlberto.lugarDeLaPresentacion(laTrastienda)
+		lucia.cobraPorLugarDePresentacion(laTrastienda)
+		luisAlberto.cobraPorLugarDePresentacion(laTrastienda)
 		
 		assert.equals(laTrastienda.decimeCosto(), 1650)
 	}
