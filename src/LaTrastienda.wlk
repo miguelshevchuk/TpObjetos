@@ -1,5 +1,5 @@
 
-class LaTrastienda {
+object laTrastienda {
 
 	method calcularCapacidad(unaFecha){
 		var capacidad

@@ -8,6 +8,7 @@ import MusicoEspecial.*
 import Instrumento.*
 import LunaPark.*
 import LaTrastienda.*
+import Album.*
 
 
 
@@ -18,6 +19,8 @@ describe "Pruebas para los músicos" {
 	const joaquin = new MusicoDeGrupo(20, 5)
 	const lucia = new VocalistaPopular(70, 20, "familia")
 	const luisAlberto = new MusicoEspecial()
+	const kike = new MusicoDeGrupo(60, 20)
+	const soledad = new VocalistaPopular(55, 0, "amor")
 
 	//Bandas
 	const pimpinela = new Banda()
@@ -35,18 +38,26 @@ describe "Pruebas para los músicos" {
 	const gibsonRota = new Instrumento("Gibson", 5)
 	const fender = new Instrumento("Fender", 10)
 	
-	//Teatros
-	const lunaPark = new LunaPark()
-	const laTrastienda = new LaTrastienda()
-	
 	//Presentaciones
 	const presentacionLunaPark = new Presentacion((new Date(20, 04, 2017)), lunaPark)
 	const presentacionLaTrastienda = new Presentacion((new Date(15, 11, 2017)), laTrastienda)
+	
+	//Albumes
+	const albumEspecialLaFamilia= new Album("Especial La Familia", (new Date(17, 06, 1992)))
+	const albumLaSole = new Album("La Sole", (new Date(04, 02, 2005)))
+	const albumParaLosArboles = new Album("Para Los Árboles", (new Date(31, 03, 2003)))
+	const albumJustCrisantemo = new Album("Just Crisantemo", (new Date(05, 12, 2007)))
 	
 	fixture{
 		
 		//musicos
 		joaquin.tiempoNecesarioParaInterpretarBienUnaCancion(300)
+		joaquin.albumesQueEdito(albumEspecialLaFamilia)
+		
+		soledad.albumesQueEdito(albumLaSole)
+		
+		luisAlberto.albumesQueEdito(albumParaLosArboles)
+		luisAlberto.albumesQueEdito(albumJustCrisantemo)
 		
 		//Bandas
 		pimpinela.agregarMiembroALaBanda(joaquin)
@@ -74,6 +85,25 @@ describe "Pruebas para los músicos" {
 		//Presentaciones
 		presentacionLunaPark.participantes([joaquin, lucia, luisAlberto])
 		presentacionLaTrastienda.participantes([joaquin, lucia, luisAlberto])
+		
+		//Albumes
+		albumEspecialLaFamilia.canciones(laFamilia)
+		albumEspecialLaFamilia.copiasALaVenta(100000)
+		albumEspecialLaFamilia.copiasVendidas(89000)
+		
+		albumLaSole.canciones(eres)
+		albumLaSole.canciones(corazonAmericano)
+		albumLaSole.copiasALaVenta(200000)
+		albumLaSole.copiasVendidas(130000)
+		
+		albumParaLosArboles.canciones(cisne)
+		albumParaLosArboles.canciones(almaDeDiamante)
+		albumParaLosArboles.copiasALaVenta(50000)
+		albumParaLosArboles.copiasVendidas(49000)
+		
+		albumJustCrisantemo.canciones(crisantemo)
+		albumJustCrisantemo.copiasALaVenta(28000)
+		albumJustCrisantemo.copiasVendidas(27000)
 	
 	}
 
@@ -177,5 +207,17 @@ describe "Pruebas para los músicos" {
 	
 	test "el costo de la presentacion de La Trastienda es 1650"{ 
 		assert.equals(presentacionLaTrastienda.decimeCostoTotal(), 1650)
+	}
+	
+	test "la cancion Crisantemo es corta"{
+		assert.that(crisantemo.esCorta())
+	}
+	
+	test "la cancion Alma de Diamante No es corta"{
+		assert.notThat(almaDeDiamante.esCorta())
+	}
+	
+	test "Joaquin no es minimalista"{
+		assert.notThat(joaquin.sosMinimalista())
 	}
 }

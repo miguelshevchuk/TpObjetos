@@ -1,4 +1,5 @@
 import Musico.*
+import Cancion.*
 
 class VocalistaPopular inherits Musico{
 	var palabraDeCancion
@@ -15,7 +16,7 @@ class VocalistaPopular inherits Musico{
 	}
 	
 	
-	override method interpretaBien(unaCancion)=unaCancion.letra().contains(self.palabraDeCancion())
+	override method interpretaBien(unaCancion)=unaCancion.tenesLaPalabra(self.palabraDeCancion())
 		
 	override method decimeTuHabilidad(){
 		var habilidadTotal
