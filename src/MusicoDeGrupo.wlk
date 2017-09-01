@@ -39,6 +39,6 @@ class MusicoDeGrupo inherits Musico{
 		}
 	}
 	
-	method tocasVosSolo(unaPresentacion) = unaPresentacion.miembros().size() == 1
+	method tocasVosSolo(unaPresentacion) = unaPresentacion.participantes().size() == 1
 	
 }

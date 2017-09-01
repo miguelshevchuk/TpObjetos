@@ -16,7 +16,7 @@ class MusicoEspecial inherits Musico{
 	method miHabilidadEsMayorACien(unaHabilidad) = unaHabilidad > 100
 	
 	override method decimeTuHabilidad(){
-		var habilidadTotal =  8*instrumento.precio()
+		var habilidadTotal =  8 * (instrumento.precio())
 		if(self.miHabilidadEsMayorACien(habilidadTotal)){
 			habilidadTotal = 100
 		}
@@ -36,6 +36,6 @@ class MusicoEspecial inherits Musico{
 		}
 	}
 	
-	method esAntesDeSeptiembre(unaPresentacion) = unaPresentacion.fechaPresentacion() < (new Date(2017, 09, 1))
+	method esAntesDeSeptiembre(unaPresentacion) = unaPresentacion.fechaPresentacion() < (new Date(01, 09, 2017))
 	
 }

@@ -40,10 +40,13 @@ describe "Pruebas para los músicos" {
 	const laTrastienda = new LaTrastienda()
 	
 	//Presentaciones
-	const presentacionLunaPark = new Presentacion((new Date(2017, 04, 20)), lunaPark)
-	const presentacionLaTrastienda = new Presentacion((new Date(2017, 11, 15)), laTrastienda)
+	const presentacionLunaPark = new Presentacion((new Date(20, 04, 2017)), lunaPark)
+	const presentacionLaTrastienda = new Presentacion((new Date(15, 11, 2017)), laTrastienda)
 	
 	fixture{
+		
+		//musicos
+		joaquin.tiempoNecesarioParaInterpretarBienUnaCancion(300)
 		
 		//Bandas
 		pimpinela.agregarMiembroALaBanda(joaquin)
@@ -107,7 +110,7 @@ describe "Pruebas para los músicos" {
 		assert.equals(luisAlberto.decimeTuHabilidad(), 40)
 	}
 	
-	test "Joaquin interpreta bien la canción La Familia"{
+	test "Joaquin no interpreta bien la canción La Familia"{
 		assert.notThat(joaquin.interpretaBien(laFamilia))	
 	}
 	
@@ -142,12 +145,12 @@ describe "Pruebas para los músicos" {
 	}
 	
 	test "La capacidad de La Trastienda para el 5/8/17, es 700"{
-		assert.equals(laTrastienda.calcularCapacidad((new Date(2017, 08, 05))), 700)
+		assert.equals(laTrastienda.calcularCapacidad((new Date(05, 08, 2017))), 700)
 		
 	}
 	
 	test "La capacidad de La Trastienda para el 8/8/17, es 400"{
-		assert.equals(laTrastienda.calcularCapacidad((new Date(2017, 08, 08))), 400)
+		assert.equals(laTrastienda.calcularCapacidad((new Date(08, 08, 2017))), 400)
 	}
 	
 	
@@ -164,7 +167,6 @@ describe "Pruebas para los músicos" {
 	}
 	
 	test "Luis Alberto cobra 1200, en la presentación de La Trastienda"{
-		luisAlberto.cobraPorLugarDePresentacion(laTrastienda)
 		assert.equals(luisAlberto.cuantoCobrasLaPresentacion(presentacionLaTrastienda), 1200)
 	}
 	

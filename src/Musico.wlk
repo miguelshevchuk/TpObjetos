@@ -14,7 +14,7 @@ class Musico{
 	method variacionEnGrupo()=variacionEnGrupo
 	method variacionEnGrupo(unaVariacion){variacionEnGrupo=unaVariacion}
 		
-	method tocasEnLaPresentacion(unaPresentacion) = unaPresentacion.miembros().contains(self)
+	method tocasEnLaPresentacion(unaPresentacion) = unaPresentacion.participantes().contains(self)
 		
 	method decimeTuHabilidad()
 	

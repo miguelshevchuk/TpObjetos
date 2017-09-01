@@ -8,5 +8,8 @@ class Instrumento {
 		marca = unaMarca
 		precio = unPrecio
 	}
+	
+	method marca() = marca
+	method precio() = precio
 
 }
