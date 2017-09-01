@@ -1,23 +1,44 @@
-import Integrante.*
+import Musico.*
 
-class MusicoDeGrupo inherits Integrante{ 
+class MusicoDeGrupo inherits Musico{ 
+	
+	var tiempoNecesarioParaInterpretarBienUnaCancion
 	
 	constructor(unaHabilidadSolista, variacionPorGrupo){
-		habilidadGrupo = unaHabilidadSolista + variacionPorGrupo
-		habilidadSolista=unaHabilidadSolista
-		habilidadActual=unaHabilidadSolista
-		estado="Solista"
+		variacionEnGrupo = variacionPorGrupo
+		habilidadSolista = unaHabilidadSolista
 	}
 
-		method estaEnGrupo(){ 
-			self.estado("Está en un grupo")
-			self.habilidadActual(self.habilidadGrupo())
-			self.cantidadQueCobra(50)
+	method tiempoNecesarioParaInterpretarBienUnaCancion() = tiempoNecesarioParaInterpretarBienUnaCancion
+	method tiempoNecesarioParaInterpretarBienUnaCancion(unNuevoTiempo) {
+		tiempoNecesarioParaInterpretarBienUnaCancion = unNuevoTiempo
+	}
+
+	override method interpretaBien(unaCancion) = unaCancion.duracion() > tiempoNecesarioParaInterpretarBienUnaCancion
+
+	override method decimeTuHabilidad(){
+		var habilidadTotal
+		if(tocaEnGrupo){
+			habilidadTotal = variacionEnGrupo + habilidadSolista
+		}else{
+			habilidadTotal = habilidadSolista
 		}
- 		method estaSolista(){ 
- 			self.estado("Es solista")
- 			self.habilidadActual(self.habilidadSolista())
- 			self.cantidadQueCobra(100)
- 		}
+		
+		return habilidadTotal
+	}
+	
+	override method cuantoCobrasLaPresentacion(unaPresentacion){
+		if(self.tocasEnLaPresentacion(unaPresentacion)){
+			if(self.tocasVosSolo(unaPresentacion)){
+				return 100
+			}else{
+				return 50
+			}
+		}else{
+			return 0
+		}
+	}
+	
+	method tocasVosSolo(unaPresentacion) = unaPresentacion.miembros().size() == 1
 	
 }

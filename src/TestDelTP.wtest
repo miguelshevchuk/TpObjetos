@@ -1,128 +1,179 @@
-import Objetos.*
 import Presentacion.*
-import Integrante.*
+import Musico.*
 import Cancion.*
 import MusicoDeGrupo.*
 import VocalistaPopular.*
+import Banda.*
+import MusicoEspecial.*
+import Instrumento.*
+import LunaPark.*
+import LaTrastienda.*
+
+
 
 describe "Pruebas para los músicos" {
+	
+	
+	///Musicos
+	const joaquin = new MusicoDeGrupo(20, 5)
+	const lucia = new VocalistaPopular(70, 20, "familia")
+	const luisAlberto = new MusicoEspecial()
 
-	test "si joaquin esta en grupo, su habilidad es 25" {
-		joaquin.estaEnGrupo()
-		assert.equals(joaquin.decimeHabilidad(), 25)
+	//Bandas
+	const pimpinela = new Banda()
+
+	//Canciones
+	const cisne = new Cancion("Cisne")
+	const laFamilia = new Cancion("La Familia")
+	const eres = new Cancion("Eres")
+	const corazonAmericano = new Cancion("Corazón Americano")
+	const almaDeDiamante = new Cancion("Alma de Diamante")
+	const crisantemo = new Cancion("Crisantemo")
+	
+	//Instrumentos
+	const gibson = new Instrumento("Gibson", 15)
+	const gibsonRota = new Instrumento("Gibson", 5)
+	const fender = new Instrumento("Fender", 10)
+	
+	//Teatros
+	const lunaPark = new LunaPark()
+	const laTrastienda = new LaTrastienda()
+	
+	//Presentaciones
+	const presentacionLunaPark = new Presentacion((new Date(2017, 04, 20)), lunaPark)
+	const presentacionLaTrastienda = new Presentacion((new Date(2017, 11, 15)), laTrastienda)
+	
+	fixture{
+		
+		//Bandas
+		pimpinela.agregarMiembroALaBanda(joaquin)
+		pimpinela.agregarMiembroALaBanda(lucia)
+		
+		//Canciones
+		cisne.duracion(312)
+		cisne.letra("Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
+		
+		laFamilia.duracion(264)
+		laFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+		
+		eres.duracion(145)
+		eres.letra("Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
+		
+		corazonAmericano.duracion(154)
+		corazonAmericano.letra("Canta corazón, canta más alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
+		
+		almaDeDiamante.duracion(216)
+		almaDeDiamante.letra("Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante")
+		
+		crisantemo.duracion(175)
+		crisantemo.letra("Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo")
+	
+		//Presentaciones
+		presentacionLunaPark.participantes([joaquin, lucia, luisAlberto])
+		presentacionLaTrastienda.participantes([joaquin, lucia, luisAlberto])
+	
+	}
+
+	test "si joaquin esta en pimpinela, su habilidad es 25" {
+		assert.equals(joaquin.decimeTuHabilidad(), 25)
 	}
 	
 	test "si joaquin esta como solista, su habilidad es 20"{
-		joaquin.estaSolista()
-		assert.equals(joaquin.decimeHabilidad(),20)
+		pimpinela.renuncia(joaquin)
+		assert.equals(joaquin.decimeTuHabilidad(),20)
 	}
 	
-	test "si lucia esta en grupo, su habilidad es 50 "{
-		lucia.estaEnGrupo()
-		assert.equals(lucia.decimeHabilidad(), 50)
+	test "si lucia esta en pimpinela, su habilidad es 50 "{
+		assert.equals(lucia.decimeTuHabilidad(), 50)
 	}
 	
-	test "si lucia esta como solista, su habilidad es 70 "{
-		lucia.estaSolista()
-		assert.equals(lucia.decimeHabilidad(), 70)
+	test "si lucia renuncia de pimpinela, su habilidad es 70 "{
+		pimpinela.renuncia(lucia)
+		assert.equals(lucia.decimeTuHabilidad(), 70)
 	}
 	
 	test "si Luis Alberto toca con la Fender, su habilidad es 80"{
-		luisAlberto.tocaConFender()
-		assert.equals(luisAlberto.decimeHabilidad(), 80)
+		luisAlberto.instrumento(fender)
+		assert.equals(luisAlberto.decimeTuHabilidad(), 80)
 	}
 	
 	test "si Luis Alberto toca con la Gibson estando sana, su habilidad es 100"{
-		luisAlberto.tocaConGibsonsana()
-		assert.equals(luisAlberto.decimeHabilidad(), 100)
+		luisAlberto.instrumento(gibson)
+		assert.equals(luisAlberto.decimeTuHabilidad(), 100)
 	}
 	
 	test "si Luis Alberto toca con la Gibson estando rota, su habilidad es 40"{
-		luisAlberto.tocaConGibsonrota()
-		assert.equals(luisAlberto.decimeHabilidad(), 40)
+		luisAlberto.instrumento(gibsonRota)
+		assert.equals(luisAlberto.decimeTuHabilidad(), 40)
 	}
 	
-	test "si Joaquin interpreta bien la canción La Familia"{
-		assert.equals(joaquin.interpretaBien(laFamilia), false)	
+	test "Joaquin interpreta bien la canción La Familia"{
+		assert.notThat(joaquin.interpretaBien(laFamilia))	
 	}
 	
-	test "si Joaquin interpreta bien la canción Cisne"{
+	test "Joaquin interpreta bien la canción Cisne"{
 		assert.that(joaquin.interpretaBien(cisne))
 	}
 	
-	test "si Lucia interpreta bien la canción La Familia"{
+	test "Lucia interpreta bien la canción La Familia"{
 		assert.that(lucia.interpretaBien(laFamilia))
 	}
 	
-	test "si Lucia interpreta bien la canción Cisne"{
-		 assert.equals(lucia.interpretaBien(cisne), false)
+	test "Lucia interpreta bien la canción Cisne"{
+		 assert.notThat(lucia.interpretaBien(cisne))
  
 	}
 	
-	test "si Luis Alberto interpreta bien la canción La Familia"{
+	test "Luis Alberto interpreta bien la canción La Familia"{
 		assert.that(luisAlberto.interpretaBien(laFamilia))
 	}
 	
-	test "si Luis Alberto interpreta bien la canción Cisne"{
+	test "Luis Alberto interpreta bien la canción Cisne"{
 		assert.that(luisAlberto.interpretaBien(cisne))
 	}
 	
-	test "si Joaquin cobra 50, en la presentación del Luna Park"{
-		joaquin.estaEnGrupo()
-		assert.equals(joaquin.cantidadQueCobra(), 50)
+	test "Joaquin cobra 50, en la presentación del Luna Park"{
+		assert.equals(joaquin.cuantoCobrasLaPresentacion(presentacionLunaPark), 50)
 	}
 	
-	test "si Joaquin cobra 100, en la presentación del Luna Park"{
-		joaquin.estaSolista()
-		assert.equals(joaquin.cantidadQueCobra(), 100)
+	test "Joaquin cobra 100, si actua solo en la trastienda"{
+		presentacionLaTrastienda.participantes([joaquin])
+		assert.equals(joaquin.cuantoCobrasLaPresentacion(presentacionLaTrastienda), 100)
 	}
 	
-	test "si la capacidad de La Trastienda para el 5/8/17, es 700"{
-		laTrastienda.fechaPresentacion(new Date(05,08,17))
-		assert.equals(laTrastienda.capacidad(), 700)
+	test "La capacidad de La Trastienda para el 5/8/17, es 700"{
+		assert.equals(laTrastienda.calcularCapacidad((new Date(2017, 08, 05))), 700)
 		
 	}
 	
-	test "si la capacidad de La Trastienda para el 8/8/17, es 400"{
-		laTrastienda.fechaPresentacion(new Date(08,08,17))
-		assert.equals(laTrastienda.capacidad(), 400)
+	test "La capacidad de La Trastienda para el 8/8/17, es 400"{
+		assert.equals(laTrastienda.calcularCapacidad((new Date(2017, 08, 08))), 400)
 	}
 	
 	
-	test "si Lucia cobra 500, en la presentación del Luna Park"{
-		lucia.cobraPorLugarDePresentacion(lunaPark)
-		assert.equals(lucia.cantidadQueCobra(), 500)
+	test "Lucia cobra 500, en la presentación del Luna Park"{
+		assert.equals(lucia.cuantoCobrasLaPresentacion(presentacionLunaPark), 500)
 	}
 	
-	test "si Lucia cobra 400, en la presentación de La Trastienda"{
-		lucia.cobraPorLugarDePresentacion(laTrastienda)
-		assert.equals(lucia.cantidadQueCobra(), 400)
+	test "Lucia cobra 400, en la presentación de La Trastienda"{
+		assert.equals(lucia.cuantoCobrasLaPresentacion(presentacionLaTrastienda), 400)
 	}
 	
-	test "si Luis Alberto cobra 1000, en la presentación del Luna Park"{
-		luisAlberto.cobraPorLugarDePresentacion(lunaPark)
-		assert.equals(luisAlberto.cantidadQueCobra(), 1000)
+	test "Luis Alberto cobra 1000, en la presentación del Luna Park"{
+		assert.equals(luisAlberto.cuantoCobrasLaPresentacion(presentacionLunaPark), 1000)
 	}
 	
-	test "si Luis Alberto cobra 1200, en la presentación de La Trastienda"{
+	test "Luis Alberto cobra 1200, en la presentación de La Trastienda"{
 		luisAlberto.cobraPorLugarDePresentacion(laTrastienda)
-		assert.equals(luisAlberto.cantidadQueCobra(), 1200)
+		assert.equals(luisAlberto.cuantoCobrasLaPresentacion(presentacionLaTrastienda), 1200)
 	}
 	
 
 	test "el costo de la presentacion del Luna Park es 1550 "{
-		joaquin.estaEnGrupo()
-		lucia.cobraPorLugarDePresentacion(lunaPark)
-		luisAlberto.cobraPorLugarDePresentacion(lunaPark)
-		
-		assert.equals(lunaPark.decimeCosto(), 1550)
+		assert.equals(presentacionLunaPark.decimeCostoTotal(), 1550)
 	}
 	
 	test "el costo de la presentacion de La Trastienda es 1650"{ 
-		joaquin.estaEnGrupo()
-		lucia.cobraPorLugarDePresentacion(laTrastienda)
-		luisAlberto.cobraPorLugarDePresentacion(laTrastienda)
-		
-		assert.equals(laTrastienda.decimeCosto(), 1650)
+		assert.equals(presentacionLaTrastienda.decimeCostoTotal(), 1650)
 	}
 }

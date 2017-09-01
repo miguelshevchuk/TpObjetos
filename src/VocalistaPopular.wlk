@@ -1,31 +1,47 @@
-import Integrante.*
+import Musico.*
 
-class VocalistaPopular inherits Integrante{
-		var palabraDeCancion=0
+class VocalistaPopular inherits Musico{
+	var palabraDeCancion
 		
-		constructor(unaHabilidadSolista, variacionGrupo, palabraCancion){
-			habilidadGrupo = unaHabilidadSolista - variacionGrupo
-			habilidadSolista= unaHabilidadSolista
-			habilidadActual= unaHabilidadSolista
-			palabraDeCancion=palabraCancion
-			estado="Solista"
-		}
+	constructor(unaHabilidadSolista, variacionGrupo, palabraCancion){
+		variacionEnGrupo = variacionGrupo
+		habilidadSolista= unaHabilidadSolista
+		palabraDeCancion=palabraCancion
+	}
 		
-		method palabraDeCancion()=palabraDeCancion
-		method palabraDeCancion(nuevaPalabraDeCancion){
-			palabraDeCancion=nuevaPalabraDeCancion
-		}
-		
-		method estaEnGrupo(){ 
-			self.estado("Está en un grupo")
-			self.habilidadActual(self.habilidadGrupo())
-		}
- 		method estaSolista(){
- 			self.estado("Es solista")
- 			self.habilidadActual(self.habilidadSolista())
- 		}
+	method palabraDeCancion()=palabraDeCancion
+	method palabraDeCancion(nuevaPalabraDeCancion){
+		palabraDeCancion=nuevaPalabraDeCancion
+	}
 	
-		override method interpretaBien(unaCancion)=unaCancion.letra().contains(self.palabraDeCancion())
+	
+	override method interpretaBien(unaCancion)=unaCancion.letra().contains(self.palabraDeCancion())
 		
+	override method decimeTuHabilidad(){
+		var habilidadTotal
+		if(tocaEnGrupo){
+			habilidadTotal = habilidadSolista-variacionEnGrupo
+		}else{
+			habilidadTotal = habilidadSolista
+		}
+		
+		return habilidadTotal
+	}
+		
+	override method cuantoCobrasLaPresentacion(unaPresentacion){
+		if(self.tocasEnLaPresentacion(unaPresentacion)){
+			if(self.esUnLugarConcurrido(unaPresentacion)){
+				return 500
+			}else{
+				return 400
+			}
+		}else{
+			return 0
+		}
+	}
+	
+	method esUnLugarConcurrido(unaPresentacion) = self.capacidadDeLaPresentacion(unaPresentacion) > 5000
+	
+	method capacidadDeLaPresentacion(unaPresentacion) = unaPresentacion.teatro().calcularCapacidad(unaPresentacion.fechaPresentacion())
 	
 }
