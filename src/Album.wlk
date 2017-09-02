@@ -25,19 +25,19 @@ class Album {
 	method copiasVendidas(nuevoCopiasVendidas){copiasVendidas=nuevoCopiasVendidas}
 	
 	method canciones()=canciones
-	method canciones(nuevaCancion){canciones.add(nuevaCancion)}
+	method canciones(nuevasCanciones){ canciones= nuevasCanciones}
 	
-	method cancionesMenoresATresMinutos(){
-		self.canciones().all({cancion=>cancion.esCorta()})
-	}
+	method cancionesMenoresATresMinutos() = self.canciones().all({cancion=>cancion.esCorta()})
 	
-	method cancionesQueTienenLaPalabra(){
-		return self.canciones().map({cancion=>cancion.tenesLaPalabra()})
+	method cancionesQueTienenLaPalabra(unaPalabra){
+		return self.canciones().filter({cancion=>cancion.tenesLaPalabra(unaPalabra)})
 	}
 	
 	method duracionDeSusCanciones(){
-		return self.canciones().sum({cancion=>cancion.tamanioCancion()})
+		return self.canciones().sum({cancion=>cancion.duracion()})
 	}
+	
+	method cualEsTuCancionMasLarga() = self.canciones().max({cancion=>cancion.letra().size()})
 	
 	method buenasVentas(){
 		return self.copiasVendidas()>(75*self.copiasALaVenta()/100)

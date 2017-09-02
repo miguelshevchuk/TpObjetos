@@ -50,14 +50,30 @@ describe "Pruebas para los músicos" {
 	
 	fixture{
 		
+		//Albumes
+		albumEspecialLaFamilia.canciones([laFamilia])
+		albumEspecialLaFamilia.copiasALaVenta(100000)
+		albumEspecialLaFamilia.copiasVendidas(89000)
+		
+		albumLaSole.canciones([eres, corazonAmericano])
+		albumLaSole.copiasALaVenta(200000)
+		albumLaSole.copiasVendidas(130000)
+		
+		albumParaLosArboles.canciones([cisne, almaDeDiamante])
+		albumParaLosArboles.copiasALaVenta(50000)
+		albumParaLosArboles.copiasVendidas(49000)
+		
+		albumJustCrisantemo.canciones([crisantemo])
+		albumJustCrisantemo.copiasALaVenta(28000)
+		albumJustCrisantemo.copiasVendidas(27000)
+		
 		//musicos
 		joaquin.tiempoNecesarioParaInterpretarBienUnaCancion(300)
-		joaquin.albumesQueEdito(albumEspecialLaFamilia)
+		joaquin.albumesQueEdito([albumEspecialLaFamilia])
 		
-		soledad.albumesQueEdito(albumLaSole)
+		soledad.albumesQueEdito([albumLaSole])
 		
-		luisAlberto.albumesQueEdito(albumParaLosArboles)
-		luisAlberto.albumesQueEdito(albumJustCrisantemo)
+		luisAlberto.albumesQueEdito([albumParaLosArboles, albumJustCrisantemo])
 		
 		//Bandas
 		pimpinela.agregarMiembroALaBanda(joaquin)
@@ -86,25 +102,6 @@ describe "Pruebas para los músicos" {
 		presentacionLunaPark.participantes([joaquin, lucia, luisAlberto])
 		presentacionLaTrastienda.participantes([joaquin, lucia, luisAlberto])
 		
-		//Albumes
-		albumEspecialLaFamilia.canciones(laFamilia)
-		albumEspecialLaFamilia.copiasALaVenta(100000)
-		albumEspecialLaFamilia.copiasVendidas(89000)
-		
-		albumLaSole.canciones(eres)
-		albumLaSole.canciones(corazonAmericano)
-		albumLaSole.copiasALaVenta(200000)
-		albumLaSole.copiasVendidas(130000)
-		
-		albumParaLosArboles.canciones(cisne)
-		albumParaLosArboles.canciones(almaDeDiamante)
-		albumParaLosArboles.copiasALaVenta(50000)
-		albumParaLosArboles.copiasVendidas(49000)
-		
-		albumJustCrisantemo.canciones(crisantemo)
-		albumJustCrisantemo.copiasALaVenta(28000)
-		albumJustCrisantemo.copiasVendidas(27000)
-	
 	}
 
 	test "si joaquin esta en pimpinela, su habilidad es 25" {
@@ -217,7 +214,60 @@ describe "Pruebas para los músicos" {
 		assert.notThat(almaDeDiamante.esCorta())
 	}
 	
+	test "Soledad es minimalista"{
+		assert.that(soledad.sosMinimalista())
+	}
+
+	test "Luis Alberto no es minimalista"{
+		assert.notThat(luisAlberto.sosMinimalista())
+	}
+
 	test "Joaquin no es minimalista"{
 		assert.notThat(joaquin.sosMinimalista())
+	}
+	
+	test "Las canciones de Luis Alberto que tienen la palabra cielo son Crisantemo y Alma"{
+		
+		//Esto lo verificamos asi por el orden es las cacnciones. Aun asi, abajo esta comentado como se puede hacer el test con un equals
+		var canciones = luisAlberto.cancionesQueTienenLaPalabra("cielo")
+		assert.that(canciones.contains(almaDeDiamante))
+		assert.that(canciones.contains(crisantemo))
+//		assert.equals(luisAlberto.cancionesQueTienenLaPalabra("cielo"), [almaDeDiamante, crisantemo])
+	}
+	
+	test "Ninguna cancion de Luis Alberto tienen la palabra pujante"{
+		assert.equals(luisAlberto.cancionesQueTienenLaPalabra("pujante"), [])
+	}
+	
+	test "La obra de kike dura 0 segundos"{
+		assert.equals(kike.duracionTotalDeSuObra(), 0)
+	}
+	
+	test "La obra de Soleadad dura 299 segundos"{
+		assert.equals(soledad.duracionTotalDeSuObra(), 299)
+	}
+	
+	test "La obra de Luis Alberto dura 703 segundos"{
+		assert.equals(luisAlberto.duracionTotalDeSuObra(), 703)
+	}
+	
+	test "La cancion mas larga del album para los arboles, es Alma de Diamante"{
+		assert.equals(albumParaLosArboles.cualEsTuCancionMasLarga(), almaDeDiamante)
+	}
+	
+	test "La cancion mas larga del album especial la familia, es la Familia"{
+		assert.equals(albumEspecialLaFamilia.cualEsTuCancionMasLarga(), laFamilia)
+	}
+	
+	test "Luis Alberto la pego"{
+		assert.that(luisAlberto.laPego())
+	}
+	
+	test "Soledad la pego"{
+		assert.notThat(soledad.laPego())
+	}
+	
+	test "Joaquin la pego"{
+		assert.that(joaquin.laPego())
 	}
 }

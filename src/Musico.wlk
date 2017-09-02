@@ -17,7 +17,7 @@ class Musico{
 	method variacionEnGrupo(unaVariacion){variacionEnGrupo=unaVariacion}
 	
 	method albumesQueEdito()=albumesQueEdito
-	method albumesQueEdito(nuevoAlbum){albumesQueEdito.add(nuevoAlbum)}
+	method albumesQueEdito(nuevosAlbumes){albumesQueEdito = nuevosAlbumes}
 		
 	method tocasEnLaPresentacion(unaPresentacion) = unaPresentacion.participantes().contains(self)
 		
@@ -27,12 +27,10 @@ class Musico{
 	
 	method cuantoCobrasLaPresentacion(unaPresentacion)
 	
-	method sosMinimalista(){
-		return self.albumesQueEdito().all({album=>album.cancionesMenoresATresMinutos()})
-	}
+	method sosMinimalista() = albumesQueEdito.all({album=>album.cancionesMenoresATresMinutos()})
 	
 	method cancionesQueTienenLaPalabra(unaPalabra){
-		return self.albumesQueEdito().map({album=>album.cancionesQueTienenLaPalabra(unaPalabra)})
+		return self.albumesQueEdito().flatMap({album=>album.cancionesQueTienenLaPalabra(unaPalabra)})
 	}
 	
 	method duracionTotalDeSuObra(){

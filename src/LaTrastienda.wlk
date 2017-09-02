@@ -1,9 +1,11 @@
 
 object laTrastienda {
 
+	const codigoSabado = 6
+
 	method calcularCapacidad(unaFecha){
 		var capacidad
-		if(unaFecha.dayOfWeek() == 6){
+		if(unaFecha.dayOfWeek() == codigoSabado){
 			capacidad = 700
 		}else{
 			capacidad = 400

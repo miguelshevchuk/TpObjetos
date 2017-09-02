@@ -29,14 +29,11 @@ class Cancion{
 		duracion = unaDuracion
 	}
 	
-	method esCorta()=self.duracion()<180
+	method esCorta()=duracion<180
 	
 	method tenesLaPalabra(unaPalabra){
-		return self.letra().contains(unaPalabra)
+		return self.letra().toLowerCase().contains(unaPalabra.toLowerCase())
 	}
 	
-	method tamanioCancion(){
-		return self.letra().size()
-	}
 }
 
