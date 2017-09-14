@@ -252,11 +252,11 @@ describe "Pruebas para los músicos" {
 	}
 	
 	test "La cancion mas larga del album para los arboles, es Alma de Diamante"{
-		assert.equals(albumParaLosArboles.cualEsTuCancionMasLarga(), almaDeDiamante)
+		assert.equals(albumParaLosArboles.maximaCancionSegunLetra(), almaDeDiamante)
 	}
 	
 	test "La cancion mas larga del album especial la familia, es la Familia"{
-		assert.equals(albumEspecialLaFamilia.cualEsTuCancionMasLarga(), laFamilia)
+		assert.equals(albumEspecialLaFamilia.maximaCancionSegunLetra(), laFamilia)
 	}
 	
 	test "Luis Alberto la pego"{

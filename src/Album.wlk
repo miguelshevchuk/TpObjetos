@@ -6,12 +6,18 @@ class Album {
  	var copiasALaVenta
  	var copiasVendidas
  	var canciones=[]
+ 	//const criterioDeTitulo = {cancion=>cancion.letra().size()}
+ 	const criterioDeLetra = {cancion=>cancion.titulo().size()}
+ 	//const criterioDeDuracion = {cancion=>cancion.duracion()}
+ 	
  	
  	constructor(nombreDelAlbum, fechaLanzamiento){
  		nombreAlbum = nombreDelAlbum
  		fechaDeLanzamiento = fechaLanzamiento
  	}
 
+	method criterioDeLetra()=criterioDeLetra
+	
 	method nombreAlbum()=nombreAlbum
 	method nombreAlbum(nuevoNombreAlbum){nombreAlbum=nuevoNombreAlbum}
 	
@@ -29,17 +35,16 @@ class Album {
 	
 	method cancionesMenoresATresMinutos() = self.canciones().all({cancion=>cancion.esCorta()})
 	
-	method cancionesQueTienenLaPalabra(unaPalabra){
-		return self.canciones().filter({cancion=>cancion.tenesLaPalabra(unaPalabra)})
-	}
+	method cancionesQueTienenLaPalabra(unaPalabra) = self.canciones().filter({cancion=>cancion.tenesLaPalabra(unaPalabra)})
 	
-	method duracionDeSusCanciones(){
-		return self.canciones().sum({cancion=>cancion.duracion()})
-	}
+	method duracionDeSusCanciones() = self.canciones().sum({cancion=>cancion.duracion()})
 	
-	method cualEsTuCancionMasLarga() = self.canciones().max({cancion=>cancion.letra().size()})
+	method maximaCancionSegun(unCriterio)= self.canciones().max({cancion=>unCriterio.apply(cancion)})
 	
-	method buenasVentas(){
-		return self.copiasVendidas()>(75*self.copiasALaVenta()/100)
-	}
+	method maximaCancionSegunLetra() = self.canciones().max({cancion=>cancion.letra().size()})
+	method maximaCancionSegunTitulo() = self.canciones().max({cancion=>cancion.titulo().size()})
+	method maximaCancionSegunDuracion() = self.canciones().max({cancion=>cancion.duracion()})
+	
+	method buenasVentas() = self.copiasVendidas()>(75*self.copiasALaVenta()/100)
+
 }
