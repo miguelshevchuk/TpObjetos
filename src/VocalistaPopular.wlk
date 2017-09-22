@@ -16,7 +16,7 @@ class VocalistaPopular inherits Musico{
 	}
 	
 	
-	override method interpretaBien(unaCancion)=unaCancion.tenesLaPalabra(self.palabraDeCancion())
+	override method interpretaBien(unaCancion){return super(unaCancion) || unaCancion.tenesLaPalabra(self.palabraDeCancion())}
 		
 	override method decimeTuHabilidad(){
 		var habilidadTotal

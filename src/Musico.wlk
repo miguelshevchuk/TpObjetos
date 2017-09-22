@@ -23,7 +23,10 @@ class Musico{
 		
 	method decimeTuHabilidad()
 	
-	method interpretaBien(unaCancion)=true
+	method interpretaBien(unaCancion){
+		return self.albumesQueEdito().any({album=>album.canciones().contains(unaCancion)})||
+			   self.habilidadSolista() > 60
+	}
 	
 	method cuantoCobrasLaPresentacion(unaPresentacion)
 	

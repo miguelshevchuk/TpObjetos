@@ -14,7 +14,7 @@ class MusicoDeGrupo inherits Musico{
 		tiempoNecesarioParaInterpretarBienUnaCancion = unNuevoTiempo
 	}
 
-	override method interpretaBien(unaCancion) = unaCancion.duracion() > tiempoNecesarioParaInterpretarBienUnaCancion
+	override method interpretaBien(unaCancion) {return super(unaCancion) || unaCancion.duracion() > tiempoNecesarioParaInterpretarBienUnaCancion}
 
 	override method decimeTuHabilidad(){
 		var habilidadTotal

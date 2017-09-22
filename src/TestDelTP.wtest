@@ -150,7 +150,7 @@ describe "Pruebas para los músicos" {
 	}
 	
 	test "Joaquin no interpreta bien la canción La Familia"{
-		assert.notThat(joaquin.interpretaBien(laFamilia))	
+		assert.that(joaquin.interpretaBien(laFamilia))	
 	}
 	
 	test "Joaquin interpreta bien la canción Cisne"{
@@ -162,7 +162,7 @@ describe "Pruebas para los músicos" {
 	}
 	
 	test "Lucia interpreta bien la canción Cisne"{
-		 assert.notThat(lucia.interpretaBien(cisne))
+		 assert.that(lucia.interpretaBien(cisne))
  
 	}
 	
