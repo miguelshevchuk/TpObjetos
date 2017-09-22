@@ -4,7 +4,9 @@ class Cancion{
 	var titulo
 	var duracion=0
 	var letra
-	
+		
+	constructor(){}
+		
 	constructor(unTitulo){
 		titulo = unTitulo
 	}

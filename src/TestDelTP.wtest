@@ -9,7 +9,10 @@ import Instrumento.*
 import LunaPark.*
 import LaTrastienda.*
 import Album.*
-
+import Remix.*
+import CriterioDeLetra.*
+import CriterioDeTitulo.*
+import CriterioDeDuracion.*
 
 
 describe "Pruebas para los músicos" {
@@ -32,6 +35,8 @@ describe "Pruebas para los músicos" {
 	const corazonAmericano = new Cancion("Corazón Americano")
 	const almaDeDiamante = new Cancion("Alma de Diamante")
 	const crisantemo = new Cancion("Crisantemo")
+	const remixLaFamilia = new Remix("La Familia")
+	const aliciaEnElPais = new Cancion("Canción de Alicia en el país")
 	
 	//Instrumentos
 	const gibson = new Instrumento("Gibson", 15)
@@ -97,6 +102,13 @@ describe "Pruebas para los músicos" {
 		
 		crisantemo.duracion(175)
 		crisantemo.letra("Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo")
+	
+		remixLaFamilia.duracion(laFamilia)
+		remixLaFamilia.letra(laFamilia)
+		
+		aliciaEnElPais.duracion(510)
+		aliciaEnElPais.letra("Quién sabe Alicia, este país no estuvo hecho porque sí. Te vas a ir, vas a salir pero te quedas, ¿dónde más vas a ir? Y es que aquí, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabó ese juego que te hacía feliz.")
+		
 	
 		//Presentaciones
 		presentacionLunaPark.participantes([joaquin, lucia, luisAlberto])
@@ -252,11 +264,11 @@ describe "Pruebas para los músicos" {
 	}
 	
 	test "La cancion mas larga del album para los arboles, es Alma de Diamante"{
-		assert.equals(albumParaLosArboles.maximaCancionSegunLetra(), almaDeDiamante)
+		assert.equals(albumParaLosArboles.maximaCancionSegun(criterioDeLetra.getCriterio()), almaDeDiamante)
 	}
 	
 	test "La cancion mas larga del album especial la familia, es la Familia"{
-		assert.equals(albumEspecialLaFamilia.maximaCancionSegunLetra(), laFamilia)
+		assert.equals(albumEspecialLaFamilia.maximaCancionSegun(criterioDeLetra.getCriterio()), laFamilia)
 	}
 	
 	test "Luis Alberto la pego"{
@@ -270,4 +282,14 @@ describe "Pruebas para los músicos" {
 	test "Joaquin la pego"{
 		assert.that(joaquin.laPego())
 	}
+	
+	
+	
+	
+	
+	test "La duracion del remix de La Familia es 792"{
+		assert.equals(remixLaFamilia.duracion(), 792)
+	}
+	
+	
 }

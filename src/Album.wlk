@@ -1,14 +1,12 @@
 import Cancion.*
 
+
 class Album {
  	var nombreAlbum
  	var fechaDeLanzamiento
  	var copiasALaVenta
  	var copiasVendidas
  	var canciones=[]
- 	//const criterioDeTitulo = {cancion=>cancion.letra().size()}
- 	const criterioDeLetra = {cancion=>cancion.titulo().size()}
- 	//const criterioDeDuracion = {cancion=>cancion.duracion()}
  	
  	
  	constructor(nombreDelAlbum, fechaLanzamiento){
@@ -16,8 +14,6 @@ class Album {
  		fechaDeLanzamiento = fechaLanzamiento
  	}
 
-	method criterioDeLetra()=criterioDeLetra
-	
 	method nombreAlbum()=nombreAlbum
 	method nombreAlbum(nuevoNombreAlbum){nombreAlbum=nuevoNombreAlbum}
 	
@@ -40,10 +36,6 @@ class Album {
 	method duracionDeSusCanciones() = self.canciones().sum({cancion=>cancion.duracion()})
 	
 	method maximaCancionSegun(unCriterio)= self.canciones().max({cancion=>unCriterio.apply(cancion)})
-	
-	method maximaCancionSegunLetra() = self.canciones().max({cancion=>cancion.letra().size()})
-	method maximaCancionSegunTitulo() = self.canciones().max({cancion=>cancion.titulo().size()})
-	method maximaCancionSegunDuracion() = self.canciones().max({cancion=>cancion.duracion()})
 	
 	method buenasVentas() = self.copiasVendidas()>(75*self.copiasALaVenta()/100)
 
