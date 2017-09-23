@@ -16,6 +16,7 @@ import CriterioDeDuracion.*
 import HabilidadRequeridaException.*
 import CancionInterpretadaException.*
 import CompositorException.*
+import Condiciones.*
 
 
 describe "Pruebas para los músicos" {
@@ -117,6 +118,8 @@ describe "Pruebas para los músicos" {
 		//Presentaciones
 		presentacionLunaPark.participantes([joaquin, lucia, luisAlberto])
 		presentacionLaTrastienda.participantes([joaquin, lucia, luisAlberto])
+		
+		pdpalooza.condicionesParaParticipar([new CondicionDeHabilidad(70), new CondicionDeCancionBienInterpretada(aliciaEnElPais), new CondicionDeCompositor(1)])
 		
 	}
 
@@ -314,7 +317,7 @@ describe "Pruebas para los músicos" {
 	test "Lucia no puede entrar a pdpalooza con una habilidad base de 90 por que no compuso ninguna cancion"{
 		lucia.habilidadSolista(90)
 		pimpinela.renuncia(lucia)
-		const excepcionEsperada = new CompositorException("El musico no compuso ninguna cancion")
+		const excepcionEsperada = new CompositorException("El musico no cumple con la cantidad minima de canciones compuestas")
 		const bloque = {
 			 pdpalooza.agregarMusico(lucia)
 		}
