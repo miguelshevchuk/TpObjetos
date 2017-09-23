@@ -2,7 +2,7 @@ import Cancion.*
 
 class Mashups inherits Cancion {
 	
-	constructor(unaCancion, otraCancion)=super(unaCancion, otraCancion){
+	constructor(unaCancion, otraCancion)=super(){
 		letra = unaCancion.letra() + " " + otraCancion.letra()
 		titulo = unaCancion.titulo() + " x " + otraCancion.titulo()
 		duracion = unaCancion.duracion().max(otraCancion.duracion())

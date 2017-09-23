@@ -13,6 +13,9 @@ import Remix.*
 import CriterioDeLetra.*
 import CriterioDeTitulo.*
 import CriterioDeDuracion.*
+import HabilidadRequeridaException.*
+import CancionInterpretadaException.*
+import CompositorException.*
 
 
 describe "Pruebas para los músicos" {
@@ -46,6 +49,7 @@ describe "Pruebas para los músicos" {
 	//Presentaciones
 	const presentacionLunaPark = new Presentacion((new Date(20, 04, 2017)), lunaPark)
 	const presentacionLaTrastienda = new Presentacion((new Date(15, 11, 2017)), laTrastienda)
+	const pdpalooza = new Presentacion((new Date(15, 12, 2017)), lunaPark)
 	
 	//Albumes
 	const albumEspecialLaFamilia= new Album("Especial La Familia", (new Date(17, 06, 1992)))
@@ -289,6 +293,38 @@ describe "Pruebas para los músicos" {
 	
 	test "La duracion del remix de La Familia es 792"{
 		assert.equals(remixLaFamilia.duracion(), 792)
+	}
+
+	test "Luis Alberto puede entrar a a pdpalooza"{
+		luisAlberto.instrumento(gibson)
+		pdpalooza.agregarMusico(luisAlberto)
+		assert.that(pdpalooza.participantes().contains(luisAlberto))
+	}
+
+	test "Joaquin no puede entrar a pdpalooza como solista por que su habilidad no es suficiente"{
+		pimpinela.renuncia(joaquin)
+		const excepcionEsperada = new HabilidadRequeridaException("El musico no cumple con el minimo de habilidad requerido")
+		const bloque = {
+			 pdpalooza.agregarMusico(joaquin)
+		}
+		assert.throwsExceptionLike(excepcionEsperada, bloque)
+	}
+	
+
+	test "Lucia no puede entrar a pdpalooza con una habilidad base de 90 por que no compuso ninguna cancion"{
+		lucia.habilidadSolista(90)
+		pimpinela.renuncia(lucia)
+		const excepcionEsperada = new CompositorException("El musico no compuso ninguna cancion")
+		const bloque = {
+			 pdpalooza.agregarMusico(lucia)
+		}
+		assert.throwsExceptionLike(excepcionEsperada, bloque)
+	}
+
+	test "Soleadad puede entrar a pdpalooza con una habilidad base de 80"{
+		soledad.habilidadSolista(80)
+		pdpalooza.agregarMusico(soledad)
+		assert.that(pdpalooza.participantes().contains(soledad))
 	}
 	
 	
