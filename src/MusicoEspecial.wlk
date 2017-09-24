@@ -11,8 +11,7 @@ class MusicoEspecial inherits Musico{
 		instrumento = unInstrumento
 	}
 
-	override method interpretaBien(unaCancion) = true // lo tendría que borrar, usa directamente el de la super clase
-	//para musicoEspecial queda igual
+	override method interpretaBien(unaCancion) = true
 	method miHabilidadEsMayorACien(unaHabilidad) = unaHabilidad > 100
 	
 	override method decimeTuHabilidad(){
