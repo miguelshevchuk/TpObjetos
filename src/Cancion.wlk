@@ -11,7 +11,7 @@ class Cancion{
 		titulo = unTitulo
 	}
 	
-	constructor(unaDuracion, unaLetra){//creo que esta de más
+	constructor(unaDuracion, unaLetra){//creo que esta de mï¿½s
 		duracion=unaDuracion
 		letra=unaLetra
 	}
@@ -36,6 +36,8 @@ class Cancion{
 	method tenesLaPalabra(unaPalabra){
 		return self.letra().toLowerCase().contains(unaPalabra.toLowerCase())
 	}
+	
+	method tenesTiempoImpar() = self.duracion().odd()
 	
 }
 

@@ -24,9 +24,13 @@ class Musico{
 	method decimeTuHabilidad()
 	
 	method interpretaBien(unaCancion){
-		return self.albumesQueEdito().any({album=>album.canciones().contains(unaCancion)})||
-			   self.habilidadSolista() > 60
+		return self.esDeTuAutoria(unaCancion) ||
+			   self.cumpleCondicionDeHabilidad()
 	}
+	
+	method cumpleCondicionDeHabilidad() = self.habilidadSolista() > 60
+	
+	method esDeTuAutoria(unaCancion) = self.albumesQueEdito().any({album=>album.canciones().contains(unaCancion)})
 	
 	method cuantoCobrasLaPresentacion(unaPresentacion)
 	
