@@ -1,5 +1,6 @@
 
 class Banda {
+
 	var miembros = [];
 
 	method miembros() = miembros
