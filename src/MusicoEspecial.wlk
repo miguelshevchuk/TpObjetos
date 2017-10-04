@@ -22,18 +22,18 @@ class MusicoEspecial inherits Musico{
 		
 		return habilidadTotal
 	} 
-	
-	override method cuantoCobrasLaPresentacion(unaPresentacion){
-		if(self.tocasEnLaPresentacion(unaPresentacion)){
-			if(self.esAntesDeSeptiembre(unaPresentacion)){
-				return 1000
-			}else{
-				return 1200
-			}
-		}else{
-			return 0
-		}
-	}
+//	
+//	override method cuantoCobrasLaPresentacion(unaPresentacion){
+//		if(self.tocasEnLaPresentacion(unaPresentacion)){
+//			if(self.esAntesDeSeptiembre(unaPresentacion)){
+//				return 1000
+//			}else{
+//				return 1200
+//			}
+//		}else{
+//			return 0
+//		}
+//	}
 	
 	method esAntesDeSeptiembre(unaPresentacion) = unaPresentacion.fechaPresentacion() < (new Date(01, 09, 2017))
 	

@@ -1,7 +1,7 @@
 
 class MusicoImparero {
 
-	method interpretaBien(unaCancion) = unaCancion.tenesTiempoImpar()
+	method sabeInterpretar(unaCancion) = unaCancion.tenesTiempoImpar()
 
 }
 
@@ -10,7 +10,7 @@ class MusicoPalabrero{
 	var palabraDeCancion
 	
 	constructor(unaPalabra){
-		self.palabraDeCancion(unaPalabra)
+		palabraDeCancion = unaPalabra
 	}
 	
 	method palabraDeCancion()=palabraDeCancion
@@ -18,7 +18,7 @@ class MusicoPalabrero{
 		palabraDeCancion=nuevaPalabraDeCancion
 	}
 
-	method interpretaBien(unaCancion) = unaCancion.tenesLaPalabra(self.palabraDeCancion())
+	method sabeInterpretar(unaCancion) = unaCancion.tenesLaPalabra(self.palabraDeCancion())
 
 
 }
@@ -36,7 +36,7 @@ class MusicoLarguero{
 		tiempoNecesarioParaInterpretarBienUnaCancion = unNuevoTiempo
 	}
 
-	method interpretaBien(unaCancion) = unaCancion.duracion() > tiempoNecesarioParaInterpretarBienUnaCancion
+	method sabeInterpretar(unaCancion) = unaCancion.duracion() > tiempoNecesarioParaInterpretarBienUnaCancion
 	
 
 }

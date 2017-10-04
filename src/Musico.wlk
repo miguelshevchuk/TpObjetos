@@ -1,5 +1,7 @@
 import Album.*
 import Cancion.*
+import TiposMusico.*
+import FormasDeCobro.*
 
 class Musico{
 	var habilidadSolista
@@ -45,9 +47,18 @@ class Musico{
 	method interpretaBien(unaCancion) = 
 			self.esDeTuAutoria(unaCancion) ||
 			self.cumpleCondicionDeHabilidad() || 
-			self.tipoMusico().interpretaBien(unaCancion)
+			self.tipoMusico().sabeInterpretar(unaCancion)
 			
-	method decimeCualInterpretasBien(canciones) = canciones.filter({cancion=>self.interpretaBien(cancion)})
+//	method decimeCualInterpretasBien(unasCanciones){
+//		const a = new Cancion()
+//		a.letra("Hola de nuevo")
+//		self.interpretaBien(a)
+////		 (unasCanciones)
+////		return [a]
+//		return [a].filter({cancion=>self.interpretaBien(cancion)})
+//	}
+	
+	method decimeCualInterpretasBien(unasCanciones) = unasCanciones.filter({cancion=>self.interpretaBien(cancion)})
 	
 	method cumpleCondicionDeHabilidad() = self.habilidadSolista() > 60
 	
