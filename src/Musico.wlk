@@ -6,6 +6,25 @@ class Musico{
 	var variacionEnGrupo
 	var tocaEnGrupo = false
 	var albumesQueEdito = []
+	var precio
+	var tipoDeCobro 
+	var tipoMusico
+	
+	
+	method precio() = precio
+	method precio(unPrecio){
+		precio = unPrecio
+	}
+	
+	method tipoDeCobro() = tipoDeCobro
+	method tipoDeCobro(unTipoDeCobro){
+		tipoDeCobro = unTipoDeCobro
+	}
+	
+	method tipoMusico() = tipoMusico
+	method tipoMusico(unTipoDeMusico){
+		tipoMusico = unTipoDeMusico
+	}
 
 	method habilidadSolista()=habilidadSolista
 	method habilidadSolista(nuevaHabilidadSolista){habilidadSolista=nuevaHabilidadSolista}
@@ -19,20 +38,20 @@ class Musico{
 	method albumesQueEdito()=albumesQueEdito
 	method albumesQueEdito(nuevosAlbumes){albumesQueEdito = nuevosAlbumes}
 		
-	method tocasEnLaPresentacion(unaPresentacion) = unaPresentacion.participantes().contains(self)
+//	method tocasEnLaPresentacion(unaPresentacion) = unaPresentacion.participantes().contains(self)
 		
 	method decimeTuHabilidad()
 	
-	method interpretaBien(unaCancion){
-		return self.esDeTuAutoria(unaCancion) ||
-			   self.cumpleCondicionDeHabilidad()
-	}
+	method interpretaBien(unaCancion) = 
+			self.esDeTuAutoria(unaCancion) ||
+			self.cumpleCondicionDeHabilidad() || 
+			self.tipoMusico().interpretaBien(unaCancion)
+			
+	method decimeCualInterpretasBien(canciones) = canciones.filter({cancion=>self.interpretaBien(cancion)})
 	
 	method cumpleCondicionDeHabilidad() = self.habilidadSolista() > 60
 	
 	method esDeTuAutoria(unaCancion) = self.albumesQueEdito().any({album=>album.canciones().contains(unaCancion)})
-	
-	method cuantoCobrasLaPresentacion(unaPresentacion)
 	
 	method sosMinimalista() = albumesQueEdito.all({album=>album.cancionesMenoresATresMinutos()})
 	
@@ -47,5 +66,8 @@ class Musico{
 	method laPego(){
 		return self.albumesQueEdito().all({album=>album.buenasVentas()})
 	}
+	
+	method precioPorTocarEn(unaPresentacion) =	self.tipoDeCobro().cobrar(unaPresentacion, self)
+	
 }
 

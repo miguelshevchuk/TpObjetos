@@ -40,4 +40,17 @@ class Presentacion{
 
 	}
 	
+	method cantaSolo(unMusico) = 
+		self.laCantidadDeParticipantesEs(1) &&
+		self.tocaEnLaPresentacion(unMusico)
+		
+	method tocaEnLaPresentacion(unMusico) = self.participantes().contains(unMusico) 
+	
+	method laCantidadDeParticipantesEs(unaCantidad) = self.participantes().size() == unaCantidad
+	
+	method laCapacidadEsMayorA(unaCapacidad) = self.teatro().calcularCapacidad() > unaCapacidad
+	
+	method laFechaEsAnteriorA(unaFecha) = unaFecha > self.fechaPresentacion() 
+	
+	
 }

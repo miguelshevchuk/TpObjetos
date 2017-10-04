@@ -6,8 +6,7 @@ import VocalistaPopular.*
 import Banda.*
 import MusicoEspecial.*
 import Instrumento.*
-import LunaPark.*
-import LaTrastienda.*
+import Teatros.*
 import Album.*
 import Remix.*
 import CriterioDeLetra.*
@@ -17,17 +16,19 @@ import HabilidadRequeridaException.*
 import CancionInterpretadaException.*
 import CompositorException.*
 import Condiciones.*
+import TiposMusico.*
+import FormasDeCobro.*
 
 
-describe "Pruebas para los músicos" {
+describe "Pruebas para los mï¿½sicos" {
 	
 	
 	///Musicos
 	const joaquin = new MusicoDeGrupo(20, 5)
-	const lucia = new VocalistaPopular(70, 20, "familia")
+	const lucia = new VocalistaPopular(70, 20)
 	const luisAlberto = new MusicoEspecial()
 	const kike = new MusicoDeGrupo(60, 20)
-	const soledad = new VocalistaPopular(55, 0, "amor")
+	const soledad = new VocalistaPopular(55, 0)
 
 	//Bandas
 	const pimpinela = new Banda()
@@ -36,11 +37,11 @@ describe "Pruebas para los músicos" {
 	const cisne = new Cancion("Cisne")
 	const laFamilia = new Cancion("La Familia")
 	const eres = new Cancion("Eres")
-	const corazonAmericano = new Cancion("Corazón Americano")
+	const corazonAmericano = new Cancion("Corazï¿½n Americano")
 	const almaDeDiamante = new Cancion("Alma de Diamante")
 	const crisantemo = new Cancion("Crisantemo")
 	const remixLaFamilia = new Remix("La Familia")
-	const aliciaEnElPais = new Cancion("Canción de Alicia en el país")
+	const aliciaEnElPais = new Cancion("Canciï¿½n de Alicia en el paï¿½s")
 	
 	//Instrumentos
 	const gibson = new Instrumento("Gibson", 15)
@@ -55,7 +56,7 @@ describe "Pruebas para los músicos" {
 	//Albumes
 	const albumEspecialLaFamilia= new Album("Especial La Familia", (new Date(17, 06, 1992)))
 	const albumLaSole = new Album("La Sole", (new Date(04, 02, 2005)))
-	const albumParaLosArboles = new Album("Para Los Árboles", (new Date(31, 03, 2003)))
+	const albumParaLosArboles = new Album("Para Los ï¿½rboles", (new Date(31, 03, 2003)))
 	const albumJustCrisantemo = new Album("Just Crisantemo", (new Date(05, 12, 2007)))
 	
 	fixture{
@@ -78,10 +79,24 @@ describe "Pruebas para los músicos" {
 		albumJustCrisantemo.copiasVendidas(27000)
 		
 		//musicos
-		joaquin.tiempoNecesarioParaInterpretarBienUnaCancion(300)
+//		joaquin.tiempoNecesarioParaInterpretarBienUnaCancion(300)
 		joaquin.albumesQueEdito([albumEspecialLaFamilia])
+		joaquin.tipoMusico(new MusicoLarguero(300))
+		joaquin.precio(100)
+		joaquin.tipoDeCobro(new CobroPorCantidadDeArtistas())
+		
+		lucia.tipoMusico(new MusicoPalabrero("familia"))
+		lucia.precio(500)
+		lucia.tipoDeCobro(new CobroPorCapacidad(5000))
 		
 		soledad.albumesQueEdito([albumLaSole])
+		soledad.tipoMusico(new MusicoPalabrero("amor"))
+		soledad.precio(6000)
+		soledad.tipoDeCobro(new CobroPorCantidadDeArtistas())
+		
+		kike.tipoMusico(new MusicoImparero())
+		kike.precio(4000)
+		kike.tipoDeCobro(new CobroPorExpectativaInflacionaria((new Date(8, 1, 2018)), 50))
 		
 		luisAlberto.albumesQueEdito([albumParaLosArboles, albumJustCrisantemo])
 		
@@ -91,28 +106,28 @@ describe "Pruebas para los músicos" {
 		
 		//Canciones
 		cisne.duracion(312)
-		cisne.letra("Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
+		cisne.letra("Hoy el viento se abriï¿½ quedï¿½ vacï¿½o el aire una vez mï¿½s y el manantial brotï¿½ y nadie estï¿½ aquï¿½ y puedo ver que solo estallan las hojas al brillar")
 		
 		laFamilia.duracion(264)
 		laFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		
 		eres.duracion(145)
-		eres.letra("Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
+		eres.letra("Eres lo mejor que me pasï¿½ en la vida, no tengo duda, no habrï¿½ mï¿½s nada despuï¿½s de ti. Eres lo que le dio brillo al dï¿½a a dï¿½a, y asï¿½ serï¿½ por siempre, no cambiarï¿½, hasta el final de mis dï¿½as.")
 		
 		corazonAmericano.duracion(154)
-		corazonAmericano.letra("Canta corazón, canta más alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
+		corazonAmericano.letra("Canta corazï¿½n, canta mï¿½s alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazï¿½n, como soï¿½amos.")
 		
 		almaDeDiamante.duracion(216)
-		almaDeDiamante.letra("Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante")
+		almaDeDiamante.letra("Ven a mï¿½ con tu dulce luz alma de diamante. Y aunque el sol se nuble despuï¿½s sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asï¿½ con la humanidad alma de diamante")
 		
 		crisantemo.duracion(175)
-		crisantemo.letra("Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo")
+		crisantemo.letra("Tï¿½came junto a esta pared, yo quede por aquï¿½... cuando no hubo mï¿½s luz... quiero mirar a travï¿½s de mi piel... Crisantemo, que se abriï¿½... encuentra el camino hacia el cielo")
 	
 		remixLaFamilia.duracion(laFamilia)
 		remixLaFamilia.letra(laFamilia)
 		
 		aliciaEnElPais.duracion(510)
-		aliciaEnElPais.letra("Quién sabe Alicia, este país no estuvo hecho porque sí. Te vas a ir, vas a salir pero te quedas, ¿dónde más vas a ir? Y es que aquí, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabó ese juego que te hacía feliz.")
+		aliciaEnElPais.letra("Quiï¿½n sabe Alicia, este paï¿½s no estuvo hecho porque sï¿½. Te vas a ir, vas a salir pero te quedas, ï¿½dï¿½nde mï¿½s vas a ir? Y es que aquï¿½, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabï¿½ ese juego que te hacï¿½a feliz.")
 		
 	
 		//Presentaciones
@@ -156,39 +171,39 @@ describe "Pruebas para los músicos" {
 		assert.equals(luisAlberto.decimeTuHabilidad(), 40)
 	}
 	
-	test "Joaquin no interpreta bien la canción La Familia"{
+	test "Joaquin no interpreta bien la canciï¿½n La Familia"{
 		assert.that(joaquin.interpretaBien(laFamilia))	
 	}
 	
-	test "Joaquin interpreta bien la canción Cisne"{
+	test "Joaquin interpreta bien la canciï¿½n Cisne"{
 		assert.that(joaquin.interpretaBien(cisne))
 	}
 	
-	test "Lucia interpreta bien la canción La Familia"{
+	test "Lucia interpreta bien la canciï¿½n La Familia"{
 		assert.that(lucia.interpretaBien(laFamilia))
 	}
 	
-	test "Lucia interpreta bien la canción Cisne"{
+	test "Lucia interpreta bien la canciï¿½n Cisne"{
 		 assert.that(lucia.interpretaBien(cisne))
  
 	}
 	
-	test "Luis Alberto interpreta bien la canción La Familia"{
+	test "Luis Alberto interpreta bien la canciï¿½n La Familia"{
 		assert.that(luisAlberto.interpretaBien(laFamilia))
 	}
 	
-	test "Luis Alberto interpreta bien la canción Cisne"{
+	test "Luis Alberto interpreta bien la canciï¿½n Cisne"{
 		assert.that(luisAlberto.interpretaBien(cisne))
 	}
 	
-	test "Joaquin cobra 50, en la presentación del Luna Park"{
-		assert.equals(joaquin.cuantoCobrasLaPresentacion(presentacionLunaPark), 50)
-	}
-	
-	test "Joaquin cobra 100, si actua solo en la trastienda"{
-		presentacionLaTrastienda.participantes([joaquin])
-		assert.equals(joaquin.cuantoCobrasLaPresentacion(presentacionLaTrastienda), 100)
-	}
+//	test "Joaquin cobra 50, en la presentaciï¿½n del Luna Park"{
+//		assert.equals(joaquin.precioPorTocarEn(presentacionLunaPark), 50)
+//	}
+//	
+//	test "Joaquin cobra 100, si actua solo en la trastienda"{
+//		presentacionLaTrastienda.participantes([joaquin])
+//		assert.equals(joaquin.precioPorTocarEn(presentacionLaTrastienda), 100)
+//	}
 	
 	test "La capacidad de La Trastienda para el 5/8/17, es 700"{
 		assert.equals(laTrastienda.calcularCapacidad((new Date(05, 08, 2017))), 700)
@@ -200,30 +215,30 @@ describe "Pruebas para los músicos" {
 	}
 	
 	
-	test "Lucia cobra 500, en la presentación del Luna Park"{
-		assert.equals(lucia.cuantoCobrasLaPresentacion(presentacionLunaPark), 500)
-	}
-	
-	test "Lucia cobra 400, en la presentación de La Trastienda"{
-		assert.equals(lucia.cuantoCobrasLaPresentacion(presentacionLaTrastienda), 400)
-	}
-	
-	test "Luis Alberto cobra 1000, en la presentación del Luna Park"{
-		assert.equals(luisAlberto.cuantoCobrasLaPresentacion(presentacionLunaPark), 1000)
-	}
-	
-	test "Luis Alberto cobra 1200, en la presentación de La Trastienda"{
-		assert.equals(luisAlberto.cuantoCobrasLaPresentacion(presentacionLaTrastienda), 1200)
-	}
-	
-
-	test "el costo de la presentacion del Luna Park es 1550 "{
-		assert.equals(presentacionLunaPark.decimeCostoTotal(), 1550)
-	}
-	
-	test "el costo de la presentacion de La Trastienda es 1650"{ 
-		assert.equals(presentacionLaTrastienda.decimeCostoTotal(), 1650)
-	}
+//	test "Lucia cobra 500, en la presentaciï¿½n del Luna Park"{
+//		assert.equals(lucia.precioPorTocarEn(presentacionLunaPark), 500)
+//	}
+//	
+//	test "Lucia cobra 400, en la presentaciï¿½n de La Trastienda"{
+//		assert.equals(lucia.precioPorTocarEn(presentacionLaTrastienda), 400)
+//	}
+//	
+//	test "Luis Alberto cobra 1000, en la presentaciï¿½n del Luna Park"{
+//		assert.equals(luisAlberto.precioPorTocarEn(presentacionLunaPark), 1000)
+//	}
+//	
+//	test "Luis Alberto cobra 1200, en la presentaciï¿½n de La Trastienda"{
+//		assert.equals(luisAlberto.precioPorTocarEn(presentacionLaTrastienda), 1200)
+//	}
+//	
+//
+//	test "el costo de la presentacion del Luna Park es 1550 "{
+//		assert.equals(presentacionLunaPark.decimeCostoTotal(), 1550)
+//	}
+//	
+//	test "el costo de la presentacion de La Trastienda es 1650"{ 
+//		assert.equals(presentacionLaTrastienda.decimeCostoTotal(), 1650)
+//	}
 	
 	test "la cancion Crisantemo es corta"{
 		assert.that(crisantemo.esCorta())
@@ -328,6 +343,21 @@ describe "Pruebas para los músicos" {
 		soledad.habilidadSolista(80)
 		pdpalooza.agregarMusico(soledad)
 		assert.that(pdpalooza.participantes().contains(soledad))
+	}
+	
+	test "Joaquin pasa a ser imparero y canta bien 'La Familia'"{
+		joaquin.tipoMusico(new MusicoImparero())
+		assert.that(joaquin.interpretaBien(laFamilia))
+	}
+	
+	test "Joaquin pasa a ser imparero y canta bien 'El Cisne'"{
+		joaquin.tipoMusico(new MusicoImparero())
+		assert.notThat(joaquin.interpretaBien(cisne))
+	}
+	
+	test "Kike pasa a ser palabrero de DE e interpreta bien ciertas canciones"{
+		kike.tipoMusico(new MusicoPalabrero("de"))
+		assert.equals(kike.decimeCualInterpretasBien([]), [])
 	}
 	
 	
