@@ -359,7 +359,7 @@ describe "Pruebas para los musicos" {
 		
 		var unasCanciones = [corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, aliciaEnElPais, crisantemo]
 		
-//		kike.tipoMusico((new MusicoPalabrero("de")))
+		kike.tipoMusico((new MusicoPalabrero("de")))
 
 		const canciones = kike.decimeCualInterpretasBien(unasCanciones)
 		assert.equals(canciones.size(), 4)
