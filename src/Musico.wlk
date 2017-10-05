@@ -58,7 +58,15 @@ class Musico{
 //		return [a].filter({cancion=>self.interpretaBien(cancion)})
 //	}
 	
-	method decimeCualInterpretasBien(unasCanciones) = unasCanciones.filter({cancion=>self.interpretaBien(cancion)})
+//	method decimeCualInterpretasBien(unasCanciones) = unasCanciones.filter({cancion=>self.interpretaBien(cancion)})
+	
+	method decimeCualInterpretasBien(unasCanciones){ 
+	
+//		self.cambiarTipoDeMusico((new MusicoPalabrero("de")))
+		return 	unasCanciones.filter({cancion=>self.interpretaBien(cancion)})
+	
+	
+	}
 	
 	method cumpleCondicionDeHabilidad() = self.habilidadSolista() > 60
 	
@@ -80,5 +88,8 @@ class Musico{
 	
 	method precioPorTocarEn(unaPresentacion) =	self.tipoDeCobro().cobrar(unaPresentacion, self)
 	
+	method cambiarTipoDeMusico(unTipo){
+		self.tipoMusico(unTipo)
+	}
 }
 

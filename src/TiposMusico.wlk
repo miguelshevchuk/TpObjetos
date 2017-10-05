@@ -1,3 +1,4 @@
+import Cancion.*
 
 class MusicoImparero {
 
