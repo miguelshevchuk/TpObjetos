@@ -3,6 +3,7 @@ import HabilidadRequeridaException.*
 import CancionInterpretadaException.*
 import CompositorException.*
 import Condiciones.*
+import Banda.*
 
 class Presentacion{
 	var participantes=[]
@@ -52,5 +53,8 @@ class Presentacion{
 	
 	method laFechaEsAnteriorA(unaFecha) = unaFecha > self.fechaPresentacion() 
 	
+	method decimeTuMagia(){
+		self.participantes().sum({participante=>participante.decimeTuHabilidad()})
+	}
 	
 }

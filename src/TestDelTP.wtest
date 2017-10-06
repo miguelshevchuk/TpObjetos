@@ -18,7 +18,7 @@ import CompositorException.*
 import Condiciones.*
 import TiposMusico.*
 import FormasDeCobro.*
-
+import Representante.*
 
 describe "Pruebas para los musicos" {
 	
@@ -29,9 +29,15 @@ describe "Pruebas para los musicos" {
 	const luisAlberto = new MusicoEspecial()
 	const kike = new MusicoDeGrupo(60, 20)
 	const soledad = new VocalistaPopular(55, 0)
+	
+	//Representantes
+	const cachorro = new Representante(1982)
+	const felix = new Representante(500)
 
 	//Bandas
 	const pimpinela = new Banda()
+	const pimpisole = new Banda()
+	const elEternoRetorno = new Banda()
 
 	//Canciones
 	const cisne = new Cancion("Cisne")
@@ -52,6 +58,8 @@ describe "Pruebas para los musicos" {
 	const presentacionLunaPark = new Presentacion((new Date(20, 04, 2017)), lunaPark)
 	const presentacionLaTrastienda = new Presentacion((new Date(15, 11, 2017)), laTrastienda)
 	const pdpalooza = new Presentacion((new Date(15, 12, 2017)), lunaPark)
+	const presentacionPrixDami = new Presentacion((new Date(30,06,2017)), prixDami)
+	const presentacionLaCueva = new Presentacion((new Date(05,01,2018)), laCueva)
 	
 	//Albumes
 	const albumEspecialLaFamilia= new Album("Especial La Familia", (new Date(17, 06, 1992)))
@@ -104,6 +112,16 @@ describe "Pruebas para los musicos" {
 		pimpinela.agregarMiembroALaBanda(joaquin)
 		pimpinela.agregarMiembroALaBanda(lucia)
 		
+		pimpisole.agregarMiembroALaBanda(soledad)
+		pimpisole.agregarMiembroALaBanda(joaquin)
+		pimpisole.agregarMiembroALaBanda(lucia)
+		pimpisole.representante(cachorro)
+		
+		elEternoRetorno.agregarMiembroALaBanda(kike)
+		elEternoRetorno.agregarMiembroALaBanda(luisAlberto)
+		elEternoRetorno.representante(felix)
+		
+		
 		//Canciones
 		cisne.duracion(312)
 		cisne.letra("Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
@@ -135,6 +153,9 @@ describe "Pruebas para los musicos" {
 		presentacionLaTrastienda.participantes([joaquin, lucia, luisAlberto])
 		
 		pdpalooza.condicionesParaParticipar([new CondicionDeHabilidad(70), new CondicionDeCancionBienInterpretada(aliciaEnElPais), new CondicionDeCompositor(1)])
+		
+		presentacionPrixDami.participantes([joaquin, soledad], elEternoRetorno.participantes())
+		presentacionLaCueva.participantes(pimpisole.participantes())
 		
 	}
 
@@ -363,12 +384,31 @@ describe "Pruebas para los musicos" {
 
 		const canciones = kike.decimeCualInterpretasBien(unasCanciones)
 		assert.equals(canciones.size(), 4)
-		assert.that(canciones.contains(corazonAmericano))
-		assert.that(canciones.contains(eres))
-		assert.that(canciones.contains(almaDeDiamante))
-		assert.that(canciones.contains(crisantemo))
-//		assert.equals(kike.decimeCualInterpretasBien([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, aliciaEnElPais, crisantemo]), [corazonAmericano, eres, almaDeDiamante, crisantemo])
+		//assert.that(canciones.contains(corazonAmericano))
+		//assert.that(canciones.contains(eres))
+		//assert.that(canciones.contains(almaDeDiamante))
+		//assert.that(canciones.contains(crisantemo))
+		assert.equals(kike.decimeCualInterpretasBien([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, aliciaEnElPais, crisantemo]), [corazonAmericano, eres, almaDeDiamante, crisantemo])
 	}
 	
+	
+	
+	
+	test "si la habilidad de El eterno retorno es 154"{
+		assert.equals(elEternoRetorno.decimeTuHabilidad(), 154)
+	}
+	
+	test "la magia del Show de Prix D`Ami es 234"{
+		assert.equals(presentacionPrixDami.decimeTuMagia(), 234)
+		
+	}
+	
+	test "si Pimpisole puede interpertar bien la canción Cisne"{
+		assert.notThat(pimpisole.puedeTocarCancion(cisne))
+	}
+	
+	test "si el eterno retorno puede interpretar bien la canción Crisantemo"{
+		assert.that(elEternoRetorno.puedeTocarCancion(crisantemo))
+	}
 	
 }
