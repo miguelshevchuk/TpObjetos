@@ -158,7 +158,7 @@ describe "Pruebas para los musicos" {
 //		
 		
 		presentacionPrixDami.participantes([joaquin, soledad, elEternoRetorno])
-		presentacionLaCueva.participantes(pimpisole)
+		presentacionLaCueva.participantes([pimpisole])
 		
 	}
 
@@ -220,14 +220,14 @@ describe "Pruebas para los musicos" {
 		assert.that(luisAlberto.interpretaBien(cisne))
 	}
 	
-//	test "Joaquin cobra 50, en la presentaciòn del Luna Park"{
-//		assert.equals(joaquin.precioPorTocarEn(presentacionLunaPark), 50)
-//	}
-//	
-//	test "Joaquin cobra 100, si actua solo en la trastienda"{
-//		presentacionLaTrastienda.participantes([joaquin])
-//		assert.equals(joaquin.precioPorTocarEn(presentacionLaTrastienda), 100)
-//	}
+	test "Joaquin cobra 50, en la presentaciòn del Luna Park"{
+		assert.equals(joaquin.precioPorTocarEn(presentacionLunaPark), 50)
+	}
+	
+	test "Joaquin cobra 100, si actua solo en la trastienda"{
+		presentacionLaTrastienda.participantes([joaquin])
+		assert.equals(joaquin.precioPorTocarEn(presentacionLaTrastienda), 100)
+	}
 	
 	test "La capacidad de La Trastienda para el 5/8/17, es 700"{
 		assert.equals(laTrastienda.calcularCapacidad((new Date(05, 08, 2017))), 700)
@@ -239,30 +239,30 @@ describe "Pruebas para los musicos" {
 	}
 	
 	
-//	test "Lucia cobra 500, en la presentaciòn del Luna Park"{
-//		assert.equals(lucia.precioPorTocarEn(presentacionLunaPark), 500)
-//	}
-//	
-//	test "Lucia cobra 400, en la presentaciòn de La Trastienda"{
-//		assert.equals(lucia.precioPorTocarEn(presentacionLaTrastienda), 400)
-//	}
-//	
-//	test "Luis Alberto cobra 1000, en la presentaciòn del Luna Park"{
-//		assert.equals(luisAlberto.precioPorTocarEn(presentacionLunaPark), 1000)
-//	}
-//	
-//	test "Luis Alberto cobra 1200, en la presentaciòn de La Trastienda"{
-//		assert.equals(luisAlberto.precioPorTocarEn(presentacionLaTrastienda), 1200)
-//	}
-//	
-//
-//	test "el costo de la presentacion del Luna Park es 1550 "{
-//		assert.equals(presentacionLunaPark.decimeCostoTotal(), 1550)
-//	}
-//	
-//	test "el costo de la presentacion de La Trastienda es 1650"{ 
-//		assert.equals(presentacionLaTrastienda.decimeCostoTotal(), 1650)
-//	}
+	test "Lucia cobra 500, en la presentaciòn del Luna Park"{
+		assert.equals(lucia.precioPorTocarEn(presentacionLunaPark), 500)
+	}
+	
+	test "Lucia cobra 400, en la presentaciòn de La Trastienda"{
+		assert.equals(lucia.precioPorTocarEn(presentacionLaTrastienda), 400)
+	}
+	
+	test "Luis Alberto cobra 1000, en la presentaciòn del Luna Park"{
+		assert.equals(luisAlberto.precioPorTocarEn(presentacionLunaPark), 1000)
+	}
+	
+	test "Luis Alberto cobra 1200, en la presentaciòn de La Trastienda"{
+		assert.equals(luisAlberto.precioPorTocarEn(presentacionLaTrastienda), 1200)
+	}
+	
+
+	test "el costo de la presentacion del Luna Park es 1550 "{
+		assert.equals(presentacionLunaPark.decimeCostoTotal(), 1550)
+	}
+	
+	test "el costo de la presentacion de La Trastienda es 1650"{ 
+		assert.equals(presentacionLaTrastienda.decimeCostoTotal(), 1650)
+	}
 	
 	test "la cancion Crisantemo es corta"{
 		assert.that(crisantemo.esCorta())
@@ -381,29 +381,88 @@ describe "Pruebas para los musicos" {
 	
 	test "Kike pasa a ser palabrero de DE e interpreta bien ciertas canciones"{
 		
-		var unasCanciones = [corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, aliciaEnElPais, crisantemo]
-		
 		kike.tipoMusico((new MusicoPalabrero("de")))
-
-		const canciones = kike.decimeCualInterpretasBien(unasCanciones)
-		assert.equals(canciones.size(), 4)
-		//assert.that(canciones.contains(corazonAmericano))
-		//assert.that(canciones.contains(eres))
-		//assert.that(canciones.contains(almaDeDiamante))
-		//assert.that(canciones.contains(crisantemo))
-		assert.equals(kike.decimeCualInterpretasBien([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, aliciaEnElPais, crisantemo]), [corazonAmericano, eres, almaDeDiamante, crisantemo])
+		kike.habilidadSolista(20)
+		assert.equals(kike.decimeCualInterpretasBien([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, aliciaEnElPais, crisantemo]), [corazonAmericano, eres, almaDeDiamante, aliciaEnElPais, crisantemo])
+	}
+	
+	test "joaquin interpreta bien ciertas canciones"{
+		assert.equals(joaquin.decimeCualInterpretasBien([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, aliciaEnElPais, crisantemo]), [laFamilia, cisne, aliciaEnElPais])
+	}
+	
+	test "joaquin pasa a ser palabrero de xilofón  e interpreta bien ciertas canciones"{
+		
+		joaquin.tipoMusico((new MusicoPalabrero("xilofón")))
+		
+		assert.equals(joaquin.decimeCualInterpretasBien([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, aliciaEnElPais, crisantemo]), [laFamilia])
+	}
+	
+	test "lucia pasa a ser imparera e interpreta bien ciertas canciones"{
+		
+		lucia.tipoMusico((new MusicoImparero()))
+		lucia.habilidadSolista(20)
+		assert.equals(lucia.decimeCualInterpretasBien([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, aliciaEnElPais, crisantemo]), [eres, crisantemo])
+	}
+	
+	test "joaquin pasa cobrar por expectatica inflacionaria y cobra 1200 en el prix"{
+		
+		joaquin.precio(1000)
+		joaquin.tipoDeCobro((new CobroPorExpectativaInflacionaria((new Date(01, 02, 2017)), 20)))
+		
+		assert.equals(joaquin.precioPorTocarEn(presentacionPrixDami), 1200)
+	}
+	
+	test "joaquin pasa cobrar por expectatica inflacionaria y cobra 1000 en el prix de enero"{
+		
+		joaquin.precio(1000)
+		joaquin.tipoDeCobro((new CobroPorExpectativaInflacionaria((new Date(01, 02, 2017)), 20)))
+		presentacionPrixDami.fechaPresentacion(new Date(24,01,2017))
+		
+		assert.equals(joaquin.precioPorTocarEn(presentacionPrixDami), 1000)
+	}
+	
+	test "joaquin cobra 50 en el prix "{
+		
+		assert.equals(joaquin.precioPorTocarEn(presentacionPrixDami), 50)
+	}
+	
+	test "joaquin cobra 2400 con una capacidad de 13mil "{
+		
+		joaquin.precio(2500)
+		joaquin.tipoDeCobro(new CobroPorCapacidad(13000))
+		
+		assert.equals(joaquin.precioPorTocarEn(presentacionPrixDami), 2400)
+	}
+	
+	test "joaquin cobra 2500 con una capacidad de 14mil "{
+		
+		joaquin.precio(2500)
+		joaquin.tipoDeCobro(new CobroPorCapacidad(13000))
+		
+		assert.equals(joaquin.precioPorTocarEn(presentacionLaCueva), 2500)
 	}
 	
 	
+	test "El eterno retorno cobra 5500 por el prix dami "{
+		
+		assert.equals(elEternoRetorno.precioPorTocarEn(presentacionPrixDami), 5500)
+	}
 	
-//	
+	test "El productor del show de prix dami debe pagar 8550"{
+		
+		assert.equals(presentacionPrixDami.decimeCostoTotal(), 8550)
+	}
+	
+	test "El productor del show de la cueva debe pagar 5532"{
+		
+		assert.equals(presentacionLaCueva.decimeCostoTotal(), 5532)
+	}
+	
 	test "si la habilidad de El eterno retorno es 176"{
 		assert.equals(elEternoRetorno.decimeTuHabilidad(), 176)
 	}
 	
 	test "la magia del Show de Prix D`Ami es 256"{
-		
-		var a = presentacionPrixDami.decimeTuMagia()
 		
 		assert.equals(presentacionPrixDami.decimeTuMagia(), 256)
 		

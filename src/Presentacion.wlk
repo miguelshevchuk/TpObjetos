@@ -31,7 +31,7 @@ class Presentacion{
 	}
 	
 	method decimeCostoTotal(){
-		return self.participantes().sum({miembro=>miembro.cuantoCobrasLaPresentacion(self)})
+		return self.participantes().sum({miembro=>miembro.precioPorTocarEn(self)})
 	}
 	
 	method agregarMusico(unMusico){
@@ -49,12 +49,12 @@ class Presentacion{
 	
 	method laCantidadDeParticipantesEs(unaCantidad) = self.participantes().size() == unaCantidad
 	
-	method laCapacidadEsMayorA(unaCapacidad) = self.teatro().calcularCapacidad() > unaCapacidad
+	method laCapacidadEsMayorA(unaCapacidad) = self.teatro().calcularCapacidad(self.fechaPresentacion()) > unaCapacidad
 	
 	method laFechaEsAnteriorA(unaFecha) = unaFecha > self.fechaPresentacion() 
 	
-	method decimeTuMagia(){
+	method decimeTuMagia() = 
 		self.participantes().sum({participante=>participante.decimeTuHabilidad()})
-	}
+	
 	
 }
