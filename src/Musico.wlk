@@ -6,12 +6,18 @@ import FormasDeCobro.*
 class Musico{
 	var habilidadSolista
 	var variacionEnGrupo
-	var tocaEnGrupo = false
+//	var tocaEnGrupo = false
 	var albumesQueEdito = []
 	var precio
 	var tipoDeCobro 
 	var tipoMusico
+	var banda
 	
+	
+	method banda() = banda
+	method banda(unaBanda){
+		banda = unaBanda
+	}
 	
 	method precio() = precio
 	method precio(unPrecio){
@@ -31,8 +37,8 @@ class Musico{
 	method habilidadSolista()=habilidadSolista
 	method habilidadSolista(nuevaHabilidadSolista){habilidadSolista=nuevaHabilidadSolista}
 	
-	method tocaEnGrupo()=tocaEnGrupo
-	method tocaEnGrupo(tocasEnGrupo){tocaEnGrupo=tocasEnGrupo}
+//	method tocaEnGrupo()=tocaEnGrupo
+//	method tocaEnGrupo(tocasEnGrupo){tocaEnGrupo=tocasEnGrupo}
 	
 	method variacionEnGrupo()=variacionEnGrupo
 	method variacionEnGrupo(unaVariacion){variacionEnGrupo=unaVariacion}

@@ -12,7 +12,7 @@ class VocalistaPopular inherits Musico{
 		
 	override method decimeTuHabilidad(){
 		var habilidadTotal
-		if(tocaEnGrupo){
+		if(self.banda() != null){
 			habilidadTotal = habilidadSolista-variacionEnGrupo
 		}else{
 			habilidadTotal = habilidadSolista

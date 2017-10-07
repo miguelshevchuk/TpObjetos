@@ -18,6 +18,7 @@ import CompositorException.*
 import Condiciones.*
 import TiposMusico.*
 import FormasDeCobro.*
+
 import Representante.*
 
 describe "Pruebas para los musicos" {
@@ -26,7 +27,8 @@ describe "Pruebas para los musicos" {
 	///Musicos
 	const joaquin = new MusicoDeGrupo(20, 5)
 	const lucia = new VocalistaPopular(70, 20)
-	const luisAlberto = new MusicoEspecial()
+	const luisAlberto = musicoEspecial
+//	const luisAlberto = new MusicoEspecial()
 	const kike = new MusicoDeGrupo(60, 20)
 	const soledad = new VocalistaPopular(55, 0)
 	
@@ -43,11 +45,11 @@ describe "Pruebas para los musicos" {
 	const cisne = new Cancion("Cisne")
 	const laFamilia = new Cancion("La Familia")
 	const eres = new Cancion("Eres")
-	const corazonAmericano = new Cancion("Corazón Americano")
+	const corazonAmericano = new Cancion("Corazï¿½n Americano")
 	const almaDeDiamante = new Cancion("Alma de Diamante")
 	const crisantemo = new Cancion("Crisantemo")
 	const remixLaFamilia = new Remix("La Familia")
-	const aliciaEnElPais = new Cancion("CanciÃ²n de Alicia en el país")
+	const aliciaEnElPais = new Cancion("CanciÃ²n de Alicia en el paï¿½s")
 	
 	//Instrumentos
 	const gibson = new Instrumento("Gibson", 15)
@@ -60,11 +62,11 @@ describe "Pruebas para los musicos" {
 	const pdpalooza = new Presentacion((new Date(15, 12, 2017)), lunaPark)
 	const presentacionPrixDami = new Presentacion((new Date(30,06,2017)), prixDami)
 	const presentacionLaCueva = new Presentacion((new Date(05,01,2018)), laCueva)
-	
+//	
 	//Albumes
 	const albumEspecialLaFamilia= new Album("Especial La Familia", (new Date(17, 06, 1992)))
 	const albumLaSole = new Album("La Sole", (new Date(04, 02, 2005)))
-	const albumParaLosArboles = new Album("Para Los árboles", (new Date(31, 03, 2003)))
+	const albumParaLosArboles = new Album("Para Los ï¿½rboles", (new Date(31, 03, 2003)))
 	const albumJustCrisantemo = new Album("Just Crisantemo", (new Date(05, 12, 2007)))
 	
 	fixture{
@@ -116,7 +118,7 @@ describe "Pruebas para los musicos" {
 		pimpisole.agregarMiembroALaBanda(joaquin)
 		pimpisole.agregarMiembroALaBanda(lucia)
 		pimpisole.representante(cachorro)
-		
+//		
 		elEternoRetorno.agregarMiembroALaBanda(kike)
 		elEternoRetorno.agregarMiembroALaBanda(luisAlberto)
 		elEternoRetorno.representante(felix)
@@ -124,28 +126,28 @@ describe "Pruebas para los musicos" {
 		
 		//Canciones
 		cisne.duracion(312)
-		cisne.letra("Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
+		cisne.letra("Hoy el viento se abriï¿½ quedï¿½ vacï¿½o el aire una vez mï¿½s y el manantial brotï¿½ y nadie estï¿½ aquï¿½ y puedo ver que solo estallan las hojas al brillar")
 		
 		laFamilia.duracion(264)
 		laFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		
 		eres.duracion(145)
-		eres.letra("Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
+		eres.letra("Eres lo mejor que me pasï¿½ en la vida, no tengo duda, no habrï¿½ mï¿½s nada despuï¿½s de ti. Eres lo que le dio brillo al dï¿½a a dï¿½a, y asï¿½ serï¿½ por siempre, no cambiarï¿½, hasta el final de mis dï¿½as.")
 		
 		corazonAmericano.duracion(154)
-		corazonAmericano.letra("Canta corazón, canta más alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
+		corazonAmericano.letra("Canta corazï¿½n, canta mï¿½s alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazï¿½n, como soï¿½amos.")
 		
 		almaDeDiamante.duracion(216)
-		almaDeDiamante.letra("Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante")
+		almaDeDiamante.letra("Ven a mï¿½ con tu dulce luz alma de diamante. Y aunque el sol se nuble despuï¿½s sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asï¿½ con la humanidad alma de diamante")
 		
 		crisantemo.duracion(175)
-		crisantemo.letra("Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo")
+		crisantemo.letra("Tï¿½came junto a esta pared, yo quede por aquï¿½... cuando no hubo mï¿½s luz... quiero mirar a travï¿½s de mi piel... Crisantemo, que se abriï¿½... encuentra el camino hacia el cielo")
 	
 		remixLaFamilia.duracion(laFamilia)
 		remixLaFamilia.letra(laFamilia)
 		
 		aliciaEnElPais.duracion(510)
-		aliciaEnElPais.letra("Quién sabe Alicia, este país no estuvo hecho porque sí. Te vas a ir, vas a salir pero te quedas, ¿dónde más vas a ir? Y es que aquí, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabó ese juego que te hacía feliz.")
+		aliciaEnElPais.letra("Quiï¿½n sabe Alicia, este paï¿½s no estuvo hecho porque sï¿½. Te vas a ir, vas a salir pero te quedas, ï¿½dï¿½nde mï¿½s vas a ir? Y es que aquï¿½, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabï¿½ ese juego que te hacï¿½a feliz.")
 		
 	
 		//Presentaciones
@@ -153,9 +155,10 @@ describe "Pruebas para los musicos" {
 		presentacionLaTrastienda.participantes([joaquin, lucia, luisAlberto])
 		
 		pdpalooza.condicionesParaParticipar([new CondicionDeHabilidad(70), new CondicionDeCancionBienInterpretada(aliciaEnElPais), new CondicionDeCompositor(1)])
+//		
 		
-		presentacionPrixDami.participantes([joaquin, soledad], elEternoRetorno.participantes())
-		presentacionLaCueva.participantes(pimpisole.participantes())
+		presentacionPrixDami.participantes([joaquin, soledad, elEternoRetorno])
+		presentacionLaCueva.participantes(pimpisole)
 		
 	}
 
@@ -192,28 +195,28 @@ describe "Pruebas para los musicos" {
 		assert.equals(luisAlberto.decimeTuHabilidad(), 40)
 	}
 	
-	test "Joaquin no interpreta bien la canción La Familia"{
+	test "Joaquin no interpreta bien la canciï¿½n La Familia"{
 		assert.that(joaquin.interpretaBien(laFamilia))	
 	}
 	
-	test "Joaquin interpreta bien la canción Cisne"{
+	test "Joaquin interpreta bien la canciï¿½n Cisne"{
 		assert.that(joaquin.interpretaBien(cisne))
 	}
 	
-	test "Lucia interpreta bien la canción La Familia"{
+	test "Lucia interpreta bien la canciï¿½n La Familia"{
 		assert.that(lucia.interpretaBien(laFamilia))
 	}
 	
-	test "Lucia interpreta bien la canción Cisne"{
+	test "Lucia interpreta bien la canciï¿½n Cisne"{
 		 assert.that(lucia.interpretaBien(cisne))
  
 	}
 	
-	test "Luis Alberto interpreta bien la canción La Familia"{
+	test "Luis Alberto interpreta bien la canciï¿½n La Familia"{
 		assert.that(luisAlberto.interpretaBien(laFamilia))
 	}
 	
-	test "Luis Alberto interpreta bien la canción Cisne"{
+	test "Luis Alberto interpreta bien la canciï¿½n Cisne"{
 		assert.that(luisAlberto.interpretaBien(cisne))
 	}
 	
@@ -393,21 +396,24 @@ describe "Pruebas para los musicos" {
 	
 	
 	
-	
-	test "si la habilidad de El eterno retorno es 154"{
-		assert.equals(elEternoRetorno.decimeTuHabilidad(), 154)
+//	
+	test "si la habilidad de El eterno retorno es 176"{
+		assert.equals(elEternoRetorno.decimeTuHabilidad(), 176)
 	}
 	
-	test "la magia del Show de Prix D`Ami es 234"{
-		assert.equals(presentacionPrixDami.decimeTuMagia(), 234)
+	test "la magia del Show de Prix D`Ami es 256"{
+		
+		var a = presentacionPrixDami.decimeTuMagia()
+		
+		assert.equals(presentacionPrixDami.decimeTuMagia(), 256)
 		
 	}
 	
-	test "si Pimpisole puede interpertar bien la canción Cisne"{
+	test "si Pimpisole puede interpertar bien la canciï¿½n Cisne"{
 		assert.notThat(pimpisole.puedeTocarCancion(cisne))
 	}
 	
-	test "si el eterno retorno puede interpretar bien la canción Crisantemo"{
+	test "si el eterno retorno puede interpretar bien la canciï¿½n Crisantemo"{
 		assert.that(elEternoRetorno.puedeTocarCancion(crisantemo))
 	}
 	

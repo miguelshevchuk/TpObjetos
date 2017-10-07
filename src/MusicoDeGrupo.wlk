@@ -9,7 +9,7 @@ class MusicoDeGrupo inherits Musico{
 
 	override method decimeTuHabilidad(){
 		var habilidadTotal
-		if(tocaEnGrupo){
+		if(self.banda() != null){
 			habilidadTotal = variacionEnGrupo + habilidadSolista
 		}else{
 			habilidadTotal = habilidadSolista

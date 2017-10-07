@@ -20,23 +20,18 @@ class Banda {
 	method cantidadQueCobraLaBandaTotal(unShow) = self.cantidadQueCobraLaBanda(unShow) + self.representante().montoQueCobra()
 	
 	method puedeTocarCancion(unaCancion)= self.miembros().all({integrante=>integrante.interpretaBien(unaCancion)})
-	
-	method habilidadDeLaBanda() = 
-		self.miembros().sum({musico=>musico.decimeTuHabilidad()}) * 1.1
-		
-	method puedeTocar(unaCancion) = self.miembros().all({miembro=>miembro.interpretaBien(unaCancion)})
-	
+
 	
 	method agregarMiembroALaBanda(musico){
 		if(!miembros.contains(musico)){
-			musico.tocaEnGrupo(true)
+			musico.banda(self)
 			miembros.add(musico)
 		}
 	}
 	
 	method renuncia(musico){
 		if(miembros.contains(musico)){
-			musico.tocaEnGrupo(false)
+			musico.banda(null)
 			miembros.remove(musico)
 		}
 	}

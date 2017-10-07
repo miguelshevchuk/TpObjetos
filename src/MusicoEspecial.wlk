@@ -2,9 +2,9 @@ import Musico.*
 import Instrumento.*
 
 
-class MusicoEspecial inherits Musico{
+object musicoEspecial inherits Musico{
 
-	var instrumento
+	var instrumento = new Instrumento("Fender", 10)
 
 	method instrumento() = instrumento
 	method instrumento(unInstrumento) {
