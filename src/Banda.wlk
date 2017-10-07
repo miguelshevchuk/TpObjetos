@@ -21,6 +21,12 @@ class Banda {
 	
 	method puedeTocarCancion(unaCancion)= self.miembros().all({integrante=>integrante.interpretaBien(unaCancion)})
 	
+	method habilidadDeLaBanda() = 
+		self.miembros().sum({musico=>musico.decimeTuHabilidad()}) * 1.1
+		
+	method puedeTocar(unaCancion) = self.miembros().all({miembro=>miembro.interpretaBien(unaCancion)})
+	
+	
 	method agregarMiembroALaBanda(musico){
 		if(!miembros.contains(musico)){
 			musico.tocaEnGrupo(true)
